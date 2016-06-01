@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -73,6 +74,15 @@ public class Pelicula {
         }
         if (!clasificacion.isEmpty()) {
             this.clasificacion = clasificacion;
+        }
+    }
+    public void anadirSesion(Sesion session){
+        this.sesiones.add(session);
+    }
+    public void eliminarSesion(String nombre, Date fecha){
+        for(Sesion s : this.sesiones){
+            if(s.getNombre().equals(nombre)&&s.getFecha().compareTo(fecha)==0)
+                this.sesiones.remove(s);
         }
     }
     
