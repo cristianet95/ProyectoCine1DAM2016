@@ -25,7 +25,12 @@ public class Sesion {
         this.precio = precio;
         this.asientos= new ArrayList<>();
     }
-
+    @Override
+    public String toString(){
+        String cadena="";
+        cadena+="Nombre: "+this.nombre+"\nFecha: "+this.fecha.toString()+"\nPrecio: "+this.precio+"\nSala: "+this.sala.getNumero();
+        return cadena;
+    }
     public ArrayList<Asiento> getAsiento() {
         return asientos;
     }
