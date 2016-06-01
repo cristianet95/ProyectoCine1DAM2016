@@ -22,8 +22,9 @@ public class Pelicula {
     private String argumento;
     private String genero;
     private String clasificacion;
-    ArrayList<Sesion> listaSesion;
-    File peliculas= null;
+    ArrayList<Sesion> sesiones;
+    File fichero= null;
+    Pelicula activa=null;
     public Pelicula(){}
 
     public Pelicula(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
@@ -35,7 +36,7 @@ public class Pelicula {
         this.argumento = argumento;
         this.genero = genero;
         this.clasificacion = clasificacion;
-        this.listaSesion= new ArrayList<>();
+        this.sesiones= new ArrayList<>();
     }
     
      @Override
@@ -43,7 +44,7 @@ public class Pelicula {
         String cadena = "";
         cadena += "Titulo: "+this.titulo + "\nNacionalidad: " + this.nacionalidad + "\nMinutos: " + this.minutos + "\nDirector: " + this.director + "\nInterprete: " + this.interprete + "\nArgumento: " + this.argumento + "\nGenero: " + this.genero + "\nClasificacion: " + this.clasificacion+"\n";
         cadena += "Sesiones:\n";
-        for (Sesion s : listaSesion) {
+        for (Sesion s : sesiones) {
             cadena+= s.toString()+"\n";
         }
         return cadena;
@@ -77,20 +78,14 @@ public class Pelicula {
     
     
     public ArrayList<Sesion> getListaSesion() {
-        return listaSesion;
+        return sesiones;
     }
 
-    public void setListaSesion(ArrayList<Sesion> listaSesion) {
-        this.listaSesion = listaSesion;
+    public void setListaSesion(ArrayList<Sesion> sesiones) {
+        this.sesiones = sesiones;
     }
 
-    public File getLista() {
-        return peliculas;
-    }
-
-    public void setLista(File lista) {
-        this.peliculas = lista;
-    }
+    
 
     public String getTitutlo() {
         return titulo;
