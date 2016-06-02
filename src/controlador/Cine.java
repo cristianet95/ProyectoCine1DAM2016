@@ -20,6 +20,16 @@ public class Cine {
         this.nombre = nombre;
         this.peliculas= new ArrayList<>();
     }
+    public void añadirPeli(Pelicula p) {
+        peliculas.add(p);
+        //actualizar();
+    }
+
+    public void eliminarPeli(Pelicula p) {
+        peliculas.remove(p);
+        //actualizar();
+    }
+    
 
     public String getNombre() {
         return nombre;

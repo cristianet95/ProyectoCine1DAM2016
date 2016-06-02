@@ -31,6 +31,15 @@ public class Sesion {
         cadena+="Nombre: "+this.nombre+"\nFecha: "+this.fecha.toString()+"\nPrecio: "+this.precio+"\nSala: "+this.sala.getNumero();
         return cadena;
     }
+    public String mostrarSesionCompleta(){
+        String cadena="";
+        cadena+="Nombre: "+this.nombre+"\nFecha: "+this.fecha.toString()+"\nPrecio: "+this.precio+"\nSala: "+this.sala.getNumero()+"\nDisponibilidad Asientos: ";
+        for (Asiento a : asientos) {
+            cadena+="\nNºFila: ";
+        }
+        return cadena;
+    }
+    
     public ArrayList<Asiento> getAsiento() {
         return asientos;
     }
