@@ -20,7 +20,12 @@ public class Asiento {
         this.dispo = dispo;
     }
     
-
+    @Override
+    public String toString(){
+        String cadena="";
+        cadena+="NºFila: "+this.filaAsiento+"\nNºAsiento: "+this.numAsiento+"\nDisponibilidad: "+this.dispo;
+        return cadena;
+    }
     public int getFilaAsiento() {
         return filaAsiento;
     }
