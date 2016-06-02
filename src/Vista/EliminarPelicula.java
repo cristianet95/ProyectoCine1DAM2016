@@ -19,16 +19,21 @@ public class EliminarPelicula extends javax.swing.JFrame {
     public EliminarPelicula() {
         initComponents();
         this.NombreEliminarPelicula.removeAllItems();
-        
+        cargarComboClientes();
     }
-    
-    private void cargarComboClientes() {
-        ArrayList<Pelicula> peliculas = controlador.Cine.
 
-        for (int i = 0; i < clientes.size(); i++) {
-            this.comoBoxCliente.addItem(clientes.get(i).getNombre());
-        }
+    private void cargarComboClientes() {
+        /*ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
+        
+        if (peliculas.isEmpty()) {
+            this.NombreEliminarPelicula.addItem("");
+        } else {
+            for (int i = 0; i < peliculas.size(); i++) {
+                this.NombreEliminarPelicula.addItem(peliculas.get(i).getTitulo());
+            }
+        }*/
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +46,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         NombreEliminarPelicula = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonEliminarPelicula = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Eliminar Pelicula");
@@ -51,8 +56,13 @@ public class EliminarPelicula extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre Pelicula");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Eliminar");
+        botonEliminarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botonEliminarPelicula.setText("Eliminar");
+        botonEliminarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPeliculaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,7 +70,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEliminarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(78, 78, 78)
@@ -82,12 +92,17 @@ public class EliminarPelicula extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(NombreEliminarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(botonEliminarPelicula)
                 .addGap(81, 81, 81))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonEliminarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPeliculaActionPerformed
+        /*Pelicula p = main.buscarPeli(this.NombreEliminarPelicula.getSelectedItem().toString());
+        main.borrarPeli(p);*/
+    }//GEN-LAST:event_botonEliminarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,7 +141,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox NombreEliminarPelicula;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonEliminarPelicula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

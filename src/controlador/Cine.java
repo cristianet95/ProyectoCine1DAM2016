@@ -20,6 +20,15 @@ public class Cine {
         this.nombre = nombre;
         this.peliculas= new ArrayList<>();
     }
+    
+    public Pelicula buscarPeli(String titulo){
+        for (Pelicula p: this.peliculas) {
+            if(p.getTitutlo().equals(titulo)){
+                return p;
+            }
+        }
+        return null;
+    }
     public void añadirPeli(Pelicula p) {
         peliculas.add(p);
         //actualizar();
