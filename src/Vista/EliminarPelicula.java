@@ -21,7 +21,14 @@ public class EliminarPelicula extends javax.swing.JFrame {
         this.NombreEliminarPelicula.removeAllItems();
         
     }
+    
+    private void cargarComboClientes() {
+        ArrayList<Pelicula> peliculas = controlador.Cine.
 
+        for (int i = 0; i < clientes.size(); i++) {
+            this.comoBoxCliente.addItem(clientes.get(i).getNombre());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

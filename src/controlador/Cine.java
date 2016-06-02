@@ -29,7 +29,14 @@ public class Cine {
         peliculas.remove(p);
         //actualizar();
     }
-    
+
+    public ArrayList<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(ArrayList<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }  
 
     public String getNombre() {
         return nombre;
