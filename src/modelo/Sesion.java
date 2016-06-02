@@ -17,7 +17,7 @@ public class Sesion {
     private Date fecha;
     private double precio;
     ArrayList<Asiento> asientos;
-    private Sala sala= null;
+    public Sala sala= null;
     
     public Sesion(String nombre, Date fecha, double precio) {
         this.nombre = nombre;
@@ -38,6 +38,16 @@ public class Sesion {
             cadena+=a.toString()+"\n";
         }
         return cadena;
+    }
+    public void modificarSesion(String nombre, Date fecha, double precio, Sala sala){
+        if(!nombre.isEmpty())
+            this.nombre=nombre;
+        this.fecha=fecha;
+        if(precio>-1){
+            this.precio=precio;
+        if(sala!=null)
+            this.sala=sala;
+        }
     }
     
     public ArrayList<Asiento> getAsiento() {
