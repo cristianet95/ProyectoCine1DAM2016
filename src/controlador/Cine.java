@@ -5,7 +5,13 @@
  */
 package controlador;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 import modelo.Pelicula;
 
 /**
@@ -15,6 +21,7 @@ import modelo.Pelicula;
 public class Cine {
     private String nombre;
     ArrayList<Pelicula> peliculas;
+    File fichero;
 
     public Cine(String nombre) {
         this.nombre = nombre;
@@ -36,7 +43,35 @@ public class Cine {
 
     public void eliminarPeli(Pelicula p) {
         peliculas.remove(p);
-        //actualizar();
+        Iterator it = null;
+        it = (Iterator) peliculas;
+        actualizar(it);
+    }
+    public void actualizar(Iterator it) {
+        PrintWriter pwf = null;
+        try {
+            pwf = new PrintWriter(new FileOutputStream(fichero, true));
+            while (it.hasNext()) {
+                pwf.println(it.next().toString());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            pwf.close();
+        }
+    }
+
+    public void mostrarFichero() {
+        Scanner scf;
+        try {
+            scf = new Scanner(fichero);
+            while(scf.hasNextLine()){
+                System.out.println(scf.nextLine());
+            }
+            scf.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public ArrayList<Pelicula> getPeliculas() {

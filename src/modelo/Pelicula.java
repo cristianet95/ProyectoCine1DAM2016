@@ -48,6 +48,7 @@ public class Pelicula {
         for (Sesion s : sesiones) {
             cadena+= s.toString()+"\n";
         }
+        cadena+=";";
         return cadena;
     }
     public void modificarPeli(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
