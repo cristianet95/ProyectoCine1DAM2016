@@ -52,6 +52,10 @@ public class Principal extends javax.swing.JFrame {
         CrearSesion = new javax.swing.JCheckBoxMenuItem();
         ModificarSesion = new javax.swing.JCheckBoxMenuItem();
         EliminarSesion = new javax.swing.JCheckBoxMenuItem();
+        Reserva = new javax.swing.JMenu();
+        añadirReserva = new javax.swing.JCheckBoxMenuItem();
+        eliminarReserva = new javax.swing.JCheckBoxMenuItem();
+        confirmarReserva = new javax.swing.JCheckBoxMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -172,6 +176,37 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(Sesion);
 
+        Reserva.setText("Reserva");
+
+        añadirReserva.setSelected(true);
+        añadirReserva.setText("Añadir Reserva");
+        añadirReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirReservaActionPerformed(evt);
+            }
+        });
+        Reserva.add(añadirReserva);
+
+        eliminarReserva.setSelected(true);
+        eliminarReserva.setText("Eliminar Reserva");
+        eliminarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarReservaActionPerformed(evt);
+            }
+        });
+        Reserva.add(eliminarReserva);
+
+        confirmarReserva.setSelected(true);
+        confirmarReserva.setText("Confirmar Reserva");
+        confirmarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarReservaActionPerformed(evt);
+            }
+        });
+        Reserva.add(confirmarReserva);
+
+        jMenuBar1.add(Reserva);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,6 +268,21 @@ public class Principal extends javax.swing.JFrame {
         alt_eliminarSesion.setVisible(true);
     }//GEN-LAST:event_EliminarSesionActionPerformed
 
+    private void añadirReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirReservaActionPerformed
+        Vista.CrearReserva alt_crearReserva= new Vista.CrearReserva();
+        alt_crearReserva.setVisible(true);
+    }//GEN-LAST:event_añadirReservaActionPerformed
+
+    private void eliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarReservaActionPerformed
+        Vista.EliminarReserva alt_eliminarReserva= new Vista.EliminarReserva();
+        alt_eliminarReserva.setVisible(true);
+    }//GEN-LAST:event_eliminarReservaActionPerformed
+
+    private void confirmarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarReservaActionPerformed
+        Vista.ConfirmarReserva alt_confirmarReserva= new Vista.ConfirmarReserva();
+        alt_confirmarReserva.setVisible(true);
+    }//GEN-LAST:event_confirmarReservaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,8 +329,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem ModificarSala;
     private javax.swing.JCheckBoxMenuItem ModificarSesion;
     private javax.swing.JMenu Pelicula;
+    private javax.swing.JMenu Reserva;
     private javax.swing.JMenu Sala;
     private javax.swing.JMenu Sesion;
+    private javax.swing.JCheckBoxMenuItem añadirReserva;
+    private javax.swing.JCheckBoxMenuItem confirmarReserva;
+    private javax.swing.JCheckBoxMenuItem eliminarReserva;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu14;
