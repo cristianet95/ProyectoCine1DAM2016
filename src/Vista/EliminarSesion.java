@@ -29,8 +29,8 @@ public class EliminarSesion extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        eliminarNombreSesion = new javax.swing.JTextField();
         eliminarSesion = new javax.swing.JButton();
+        eliminarNombreSesion = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Eliminar Sesion");
@@ -40,6 +40,8 @@ public class EliminarSesion extends javax.swing.JFrame {
 
         eliminarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarSesion.setText("Eliminar");
+
+        eliminarNombreSesion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,9 +54,11 @@ public class EliminarSesion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(eliminarNombreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(130, 130, 130))
+                            .addComponent(eliminarNombreSesion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,7 +114,7 @@ public class EliminarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField eliminarNombreSesion;
+    private javax.swing.JComboBox eliminarNombreSesion;
     private javax.swing.JButton eliminarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
