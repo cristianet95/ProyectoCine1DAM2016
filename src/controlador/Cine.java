@@ -38,7 +38,9 @@ public class Cine {
     }
     public void añadirPeli(Pelicula p) {
         peliculas.add(p);
-        //actualizar();
+        Iterator it = null;
+        it = (Iterator) peliculas;
+        actualizar(it);
     }
 
     public void eliminarPeli(Pelicula p) {
