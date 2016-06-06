@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+import modelo.Pelicula;
+import controlador.*;
 /**
  *
  * @author USUARIO
@@ -45,7 +48,7 @@ public class CrearPelicula extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         interpretes = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        argumento = new javax.swing.JTextArea();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Crear Pelicula");
@@ -73,13 +76,18 @@ public class CrearPelicula extends javax.swing.JFrame {
 
         añadirCrearPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         añadirCrearPelicula.setText("Añadir");
+        añadirCrearPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirCrearPeliculaActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Interpretes");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        argumento.setColumns(20);
+        argumento.setRows(5);
+        jScrollPane1.setViewportView(argumento);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,6 +170,27 @@ public class CrearPelicula extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void añadirCrearPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirCrearPeliculaActionPerformed
+        Pelicula p;
+        String nomPeli, nacionalidad, director, interpretes, argumento, genero, clasificacion;
+        int minutos = 0;
+
+        nomPeli = this.nombrePelicula.getText();
+        nacionalidad = this.nacionalidad.getText();
+        director = this.director.getText();
+        interpretes = this.interpretes.getText();
+        argumento = this.argumento.getText();
+        genero = this.genero.getText();
+        clasificacion = this.clasificacion.getText();
+
+        if (nomPeli.equals("") || nacionalidad.equals("") || director.equals("") || interpretes.equals("") || argumento.equals("") || genero.equals("") || clasificacion.equals("") || minutos == 0) {
+            JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
+        }else{
+            p= new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
+            Cine cine= new Cine("xtiva");
+        }
+    }//GEN-LAST:event_añadirCrearPeliculaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +227,7 @@ public class CrearPelicula extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea argumento;
     private javax.swing.JButton añadirCrearPelicula;
     private javax.swing.JTextField clasificacion;
     private javax.swing.JTextField director;
@@ -213,7 +243,6 @@ public class CrearPelicula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField minutos;
     private javax.swing.JTextField nacionalidad;
     private javax.swing.JTextField nombrePelicula;
