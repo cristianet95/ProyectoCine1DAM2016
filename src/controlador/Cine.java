@@ -40,22 +40,21 @@ public class Cine {
 
     public void añadirPeli(Pelicula p) {
         peliculas.add(p);
-        Iterator it = null;
-        it = (Iterator) peliculas;
-        actualizar(it);
+        
     }
 
     public void eliminarPeli(Pelicula p) {
         peliculas.remove(p);
-        Iterator it = null;
-        it = (Iterator) peliculas;
-        actualizar(it);
+        
     }
 
-    public void actualizar(Iterator it) {
+    
+
+     public void guardarBD() {
+        Iterator it = (Iterator)this.peliculas;
         PrintWriter pwf = null;
         try {
-            pwf = new PrintWriter(new FileOutputStream(fichero, true));
+            pwf = new PrintWriter(new FileOutputStream("bd.txt"));
             while (it.hasNext()) {
                 pwf.println(it.next().toString());
             }
@@ -65,18 +64,21 @@ public class Cine {
             pwf.close();
         }
     }
+    
 
     public void mostrarFichero() {
         Scanner scf;
-        try {
-            scf = new Scanner(fichero);
-            while (scf.hasNextLine()) {
-                System.out.println(scf.nextLine());
+        Pelicula peli=null;
+        String[] datosPeli;
+        scf = new Scanner("bd.txt");
+        while(scf.hasNextLine()){
+            datosPeli=scf.nextLine().split(";");
+            for (int i = 0; i < datosPeli.length; i++) {
+                peli.crearPeliculaBD(datosPeli[i]);
+                this.peliculas.add(peli);
             }
-            scf.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
         }
+        scf.close();
     }
 
     public ArrayList<Pelicula> getPeliculas() {

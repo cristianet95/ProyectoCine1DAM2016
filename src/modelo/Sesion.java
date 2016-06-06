@@ -28,10 +28,25 @@ public class Sesion {
     }
 
     @Override
-    public String toString() {
-        String cadena = "";
-        cadena += "Nombre: " + this.nombre + "\nFecha: " + this.fecha.toString() + "\nPrecio: " + this.precio + "\nSala: " + this.sala.getNumero();
+    public String toString(){
+        String cadena="";
+        cadena+=this.nombre+"$"+this.fecha.toString()+"$"+this.precio+"$"+this.sala.getNumero();
         return cadena;
+    }
+    public Sesion crearSesionBD(String info){
+        Sesion sesion=null;
+        String[] datosSesion=info.split("$");
+        this.nombre = datosSesion[0];
+        String[] datosFecha = datosSesion[1].split(" ");
+        int mes=Integer.parseInt(datosFecha[1]);
+        int dia=Integer.parseInt(datosFecha[2]);
+        int año=Integer.parseInt(datosFecha[5]);
+        this.fecha.setMonth(mes);
+        this.fecha.setYear(año);
+        this.fecha.setDate(dia);
+        this.precio = Double.parseDouble(datosSesion[2]);
+        
+        return this;
     }
 
     public String mostrarSesionCompleta() {

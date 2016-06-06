@@ -42,17 +42,7 @@ public class Pelicula {
         this.sesiones = new ArrayList<>();
     }
 
-    @Override
-    public String toString() {
-        String cadena = "";
-        cadena += "Titulo: " + this.titulo + "\nNacionalidad: " + this.nacionalidad + "\nMinutos: " + this.minutos + "\nDirector: " + this.director + "\nInterprete: " + this.interprete + "\nArgumento: " + this.argumento + "\nGenero: " + this.genero + "\nClasificacion: " + this.clasificacion + "\n";
-        cadena += "Sesiones:\n";
-        for (Sesion s : sesiones) {
-            cadena += s.toString() + "\n";
-        }
-        cadena += ";";
-        return cadena;
-    }
+    
 
     public void modificarPeli(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
         if (!titulo.isEmpty()) {
@@ -79,6 +69,33 @@ public class Pelicula {
         if (!clasificacion.isEmpty()) {
             this.clasificacion = clasificacion;
         }
+    }
+    @Override
+    public String toString() {
+        String cadena = "";
+        cadena += this.titulo + "$" + this.nacionalidad + "$" + this.minutos + "$" + this.director + "$" + this.interprete + "$" + this.argumento + "$" + this.genero + "$" + this.clasificacion;
+        for (Sesion s : sesiones) {
+            cadena += "$";
+            cadena+= s.toString();
+        }
+        cadena += ";";
+        return cadena;
+    }
+    public Pelicula crearPeliculaBD(String info){
+        Sesion sesion=null;
+        String[] datosPeli=info.split("$");//0 es titulo, 1 es minutos,..del 8 al final son sesiones
+        this.titulo = datosPeli[0];
+        this.nacionalidad = datosPeli[1];
+        this.minutos = Integer.parseInt(datosPeli[2]);
+        this.director = datosPeli[3];
+        this.interprete = datosPeli[4];
+        this.argumento = datosPeli[5];
+        this.genero = datosPeli[6];
+        this.clasificacion = datosPeli[7];
+        for (int i = 8; i < datosPeli.length; i++) {
+            sesiones.add(sesion.crearSesionBD(datosPeli[i]));
+        }
+        return this;
     }
 
     public void anadirSesion(Sesion session) {
