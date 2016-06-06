@@ -187,7 +187,7 @@ public class CrearPelicula extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
         }else{
             p= new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
-            Cine cine= new Cine("xtiva");
+            /*controlador.Cine.añadirPeli(p);*/
         }
     }//GEN-LAST:event_añadirCrearPeliculaActionPerformed
 
