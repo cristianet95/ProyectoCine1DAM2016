@@ -36,7 +36,7 @@ public class ModificarSesion extends javax.swing.JFrame {
         modificarSala = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         modificarPrecio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        modificarSesion = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Modificar Sesion");
@@ -53,8 +53,8 @@ public class ModificarSesion extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Precio");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Modificar");
+        modificarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        modificarSesion.setText("Modificar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +67,7 @@ public class ModificarSesion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(modificarSesion)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -106,7 +106,7 @@ public class ModificarSesion extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(modificarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(modificarSesion)
                 .addGap(45, 45, 45))
         );
 
@@ -149,7 +149,6 @@ public class ModificarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -159,5 +158,6 @@ public class ModificarSesion extends javax.swing.JFrame {
     private javax.swing.JTextField modificarNombreSesion;
     private javax.swing.JTextField modificarPrecio;
     private javax.swing.JTextField modificarSala;
+    private javax.swing.JButton modificarSesion;
     // End of variables declaration//GEN-END:variables
 }
