@@ -56,7 +56,7 @@ public class Sesion {
         }
     }
 
-    public void reservarAsiento(int fila, int num) {
+    public void crearReserva(int fila, int num) {
         if (buscarAsiento(fila, num) != null) {
             Asiento a = buscarAsiento(fila, num);
             if (!confirmarReserva(a) && a.getDispo() != Disponibilidad.OCUPADO) {

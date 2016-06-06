@@ -9,12 +9,12 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author mati
  */
 public class Pelicula {
+
     private String titulo;
     private String nacionalidad;
     private int minutos;
@@ -24,9 +24,11 @@ public class Pelicula {
     private String genero;
     private String clasificacion;
     ArrayList<Sesion> sesiones;
-    File fichero= null;
-    Pelicula activa=null;
-    public Pelicula(){}
+    File fichero = null;
+    Pelicula activa = null;
+
+    public Pelicula() {
+    }
 
     public Pelicula(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
         this.titulo = titulo;
@@ -37,20 +39,21 @@ public class Pelicula {
         this.argumento = argumento;
         this.genero = genero;
         this.clasificacion = clasificacion;
-        this.sesiones= new ArrayList<>();
+        this.sesiones = new ArrayList<>();
     }
-    
-     @Override
+
+    @Override
     public String toString() {
         String cadena = "";
-        cadena += "Titulo: "+this.titulo + "\nNacionalidad: " + this.nacionalidad + "\nMinutos: " + this.minutos + "\nDirector: " + this.director + "\nInterprete: " + this.interprete + "\nArgumento: " + this.argumento + "\nGenero: " + this.genero + "\nClasificacion: " + this.clasificacion+"\n";
+        cadena += "Titulo: " + this.titulo + "\nNacionalidad: " + this.nacionalidad + "\nMinutos: " + this.minutos + "\nDirector: " + this.director + "\nInterprete: " + this.interprete + "\nArgumento: " + this.argumento + "\nGenero: " + this.genero + "\nClasificacion: " + this.clasificacion + "\n";
         cadena += "Sesiones:\n";
         for (Sesion s : sesiones) {
-            cadena+= s.toString()+"\n";
+            cadena += s.toString() + "\n";
         }
-        cadena+=";";
+        cadena += ";";
         return cadena;
     }
+
     public void modificarPeli(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
         if (!titulo.isEmpty()) {
             this.titulo = titulo;
@@ -77,17 +80,19 @@ public class Pelicula {
             this.clasificacion = clasificacion;
         }
     }
-    public void anadirSesion(Sesion session){
+
+    public void anadirSesion(Sesion session) {
         this.sesiones.add(session);
     }
-    public void eliminarSesion(String nombre, Date fecha){
-        for(Sesion s : this.sesiones){
-            if(s.getNombre().equals(nombre)&&s.getFecha().compareTo(fecha)==0)
+
+    public void eliminarSesion(String nombre, Date fecha) {
+        for (Sesion s : this.sesiones) {
+            if (s.getNombre().equals(nombre) && s.getFecha().compareTo(fecha) == 0) {
                 this.sesiones.remove(s);
+            }
         }
     }
-    
-    
+
     public ArrayList<Sesion> getListaSesion() {
         return sesiones;
     }
@@ -95,8 +100,6 @@ public class Pelicula {
     public void setListaSesion(ArrayList<Sesion> sesiones) {
         this.sesiones = sesiones;
     }
-
-    
 
     public String getTitutlo() {
         return titulo;

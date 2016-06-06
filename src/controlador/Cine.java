@@ -19,23 +19,25 @@ import modelo.Pelicula;
  * @author mati
  */
 public class Cine {
+
     private String nombre;
     ArrayList<Pelicula> peliculas;
     File fichero;
 
     public Cine(String nombre) {
         this.nombre = nombre;
-        this.peliculas= new ArrayList<>();
+        this.peliculas = new ArrayList<>();
     }
-    
-    public Pelicula buscarPeli(String titulo){
-        for (Pelicula p: this.peliculas) {
-            if(p.getTitutlo().equals(titulo)){
+
+    public Pelicula buscarPeli(String titulo) {
+        for (Pelicula p : this.peliculas) {
+            if (p.getTitutlo().equals(titulo)) {
                 return p;
             }
         }
         return null;
     }
+
     public void añadirPeli(Pelicula p) {
         peliculas.add(p);
         Iterator it = null;
@@ -49,6 +51,7 @@ public class Cine {
         it = (Iterator) peliculas;
         actualizar(it);
     }
+
     public void actualizar(Iterator it) {
         PrintWriter pwf = null;
         try {
@@ -67,7 +70,7 @@ public class Cine {
         Scanner scf;
         try {
             scf = new Scanner(fichero);
-            while(scf.hasNextLine()){
+            while (scf.hasNextLine()) {
                 System.out.println(scf.nextLine());
             }
             scf.close();
@@ -82,7 +85,7 @@ public class Cine {
 
     public void setPeliculas(ArrayList<Pelicula> peliculas) {
         this.peliculas = peliculas;
-    }  
+    }
 
     public String getNombre() {
         return nombre;
@@ -91,5 +94,5 @@ public class Cine {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
 }

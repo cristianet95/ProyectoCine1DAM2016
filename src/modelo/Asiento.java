@@ -10,6 +10,7 @@ package modelo;
  * @author mati
  */
 public class Asiento {
+
     private int filaAsiento;
     private int numAsiento;
     private Disponibilidad dispo;
@@ -19,13 +20,14 @@ public class Asiento {
         this.numAsiento = numAsiento;
         this.dispo = dispo;
     }
-    
+
     @Override
-    public String toString(){
-        String cadena="";
-        cadena+="NºFila: "+this.filaAsiento+"\nNºAsiento: "+this.numAsiento+"\nDisponibilidad: "+this.dispo;
+    public String toString() {
+        String cadena = "";
+        cadena += "NºFila: " + this.filaAsiento + "\nNºAsiento: " + this.numAsiento + "\nDisponibilidad: " + this.dispo;
         return cadena;
     }
+
     public int getFilaAsiento() {
         return filaAsiento;
     }
