@@ -66,7 +66,7 @@ public class Cine {
     }
     
 
-    public void mostrarFichero() {
+    public void cargarPeliculas() {
         Scanner scf;
         Pelicula peli=null;
         String[] datosPeli;
