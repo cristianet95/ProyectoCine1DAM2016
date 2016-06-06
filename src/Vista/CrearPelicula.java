@@ -182,7 +182,7 @@ public class CrearPelicula extends javax.swing.JFrame {
         argumento = this.argumento.getText();
         genero = this.genero.getText();
         clasificacion = this.clasificacion.getText();
-
+        minutos= Integer.parseInt(this.minutos.getText());
         if (nomPeli.equals("") || nacionalidad.equals("") || director.equals("") || interpretes.equals("") || argumento.equals("") || genero.equals("") || clasificacion.equals("") || minutos == 0) {
             JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
         }else{

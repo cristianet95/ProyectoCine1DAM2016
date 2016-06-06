@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+import modelo.Sala;
+
 /**
  *
  * @author USUARIO
@@ -44,17 +47,36 @@ public class CrearSala extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Numero de Sala");
 
+        numeroSala.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        numeroSala.setText("0");
+        numeroSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroSalaActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Filas");
 
+        filas.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        filas.setText("0");
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tamaño Fila");
+
+        tamañoFila.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        tamañoFila.setText("0");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("3D");
 
         crearSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         crearSala.setText("Crear");
+        crearSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearSalaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +133,33 @@ public class CrearSala extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void crearSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSalaActionPerformed
+        Sala s;
+        int numero= 0, filas= 0, tamFilas= 0;
+        boolean sala3d= validarBoton3d();
+
+        numero= Integer.parseInt(this.numeroSala.getText());
+        filas= Integer.parseInt(this.filas.getText());
+        tamFilas= Integer.parseInt(this.tamañoFila.getText());
+        
+        if(numero == 0 || filas == 0 || tamFilas == 0){
+            JOptionPane.showMessageDialog(this, "Deben tener un valor mayor que 0");
+        }else{
+            s= new Sala(numero, filas, tamFilas, sala3d);
+        }
+    }//GEN-LAST:event_crearSalaActionPerformed
+
+    private void numeroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroSalaActionPerformed
+
+    public boolean validarBoton3d(){
+        if(this.boton3D.isSelected()){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      * @param args the command line arguments
      */
