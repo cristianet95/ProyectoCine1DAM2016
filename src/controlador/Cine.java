@@ -22,7 +22,6 @@ public class Cine {
 
     private String nombre;
     ArrayList<Pelicula> peliculas;
-    File fichero;
 
     public Cine(String nombre) {
         this.nombre = nombre;
