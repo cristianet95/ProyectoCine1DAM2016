@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /*
@@ -102,7 +103,7 @@ public class Pelicula {
         this.sesiones.add(session);
     }
 
-    public void eliminarSesion(String nombre, Date fecha) {
+    public void eliminarSesion(String nombre, Calendar fecha) {
         for (Sesion s : this.sesiones) {
             if (s.getNombre().equals(nombre) && s.getFecha().compareTo(fecha) == 0) {
                 this.sesiones.remove(s);

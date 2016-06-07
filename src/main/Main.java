@@ -7,10 +7,12 @@ package main;
 
 import Vista.Principal;
 import controlador.Cine;
+import java.util.Calendar;
 import modelo.Pelicula;
 import modelo.Sala;
 import modelo.Sesion;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -30,20 +32,21 @@ public class Main {
         Sala sala3 = new Sala(3, 40, 25, false);
         Sala sala4 = new Sala(4, 20, 40, true);
         Sala sala5 = new Sala(5, 10, 40, true);
-        Date fecha1 = new Date(2016, 6, 18);        
+        Calendar fecha1=Calendar.getInstance();
+        fecha1.set(2016, 7, 15);
         Sesion sesion1 = new Sesion("m", fecha1, 9);
         sesion1.sala=sala1;
-        Date fecha2 = new Date(2016, 6, 20);        
-        Sesion sesion2 = new Sesion("t", fecha2, 5);
+        fecha1.set(2016, 7, 16);        
+        Sesion sesion2 = new Sesion("t", fecha1, 5);
         sesion2.sala=sala2;
-        Date fecha3 = new Date(2016, 7, 13);
-        Sesion sesion3 = new Sesion("n", fecha3, 4);
+        fecha1.set(2016, 8, 1);
+        Sesion sesion3 = new Sesion("n", fecha1, 4);
         sesion3.sala=sala3;
-        Date fecha4 = new Date(2016, 7, 20);
-        Sesion sesion4 = new Sesion("m", fecha4, 9);
+        fecha1.set(2016, 8, 8);
+        Sesion sesion4 = new Sesion("m", fecha1, 9);
         sesion4.sala=sala4;
-        Date fecha5 = new Date(2016, 8, 5);
-        Sesion sesion5 = new Sesion("n", fecha5, 8);
+        fecha1.set(2016, 8, 17);
+        Sesion sesion5 = new Sesion("n", fecha1, 8);
         sesion5.sala=sala5;
         peli1.anadirSesion(sesion1);
         peli1.anadirSesion(sesion2);

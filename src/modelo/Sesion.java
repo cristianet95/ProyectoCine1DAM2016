@@ -16,14 +16,14 @@ import java.util.Date;
 public class Sesion {
 
     private String nombre;
-    private Date fecha;
+    private Calendar fecha;
     private double precio;
     ArrayList<Asiento> asientos;
     public Sala sala = null;
     
     public Sesion(){}
 
-    public Sesion(String nombre, Date fecha, double precio) {
+    public Sesion(String nombre, Calendar fecha, double precio) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.precio = precio;
@@ -32,10 +32,8 @@ public class Sesion {
 
     @Override
     public String toString(){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.fecha);
         String cadena="";
-        cadena+=this.nombre+"-"+cal.get(Calendar.MONTH)+"-"+cal.get(Calendar.DATE)+"-"+cal.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero();
+        cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero();
         return cadena;
     }
     public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente
@@ -44,9 +42,7 @@ public class Sesion {
         int mes=Integer.parseInt(datosSesion[1]);
         int dia=Integer.parseInt(datosSesion[2]);
         int año=Integer.parseInt(datosSesion[3])-1900;
-        this.fecha.setMonth(mes);
-        this.fecha.setYear(año);
-        this.fecha.setDate(dia);
+        this.fecha.set(año, mes, dia);
         this.precio = Double.parseDouble(datosSesion[4]);
         this.sala=new Sala();
         this.sala.setNumero(Integer.parseInt(datosSesion[5]));
@@ -63,7 +59,7 @@ public class Sesion {
         return cadena;
     }
 
-    public void modificarSesion(String nombre, Date fecha, double precio, Sala sala) {
+    public void modificarSesion(String nombre, Calendar fecha, double precio, Sala sala) {
         if (!nombre.isEmpty()) {
             this.nombre = nombre;
         }
@@ -135,11 +131,11 @@ public class Sesion {
         this.nombre = nombre;
     }
 
-    public Date getFecha() {
+    public Calendar getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Calendar fecha) {
         this.fecha = fecha;
     }
 
