@@ -42,5 +42,21 @@ public class Main {
         Date fecha5 = new Date(2016, 8, 5);
         Sesion sesion5 = new Sesion("n", fecha5, 8);
         p.setVisible(true);
+        
+        c.añadirPeli(peli1);
+        c.añadirPeli(peli2);
+        c.añadirPeli(peli3);
+        c.añadirPeli(peli4);
+        c.añadirPeli(peli5);
+        //Prueba de todos los metodos
+        Pelicula peliAux=new Pelicula();
+        peliAux=c.buscarPeli("X-men apocalypse");
+        System.out.println(peliAux.toString());
+        c.eliminarPeli(peli5);
+        peliAux=c.buscarPeli("Aterriza como puedas");
+        System.out.println(peliAux.toString());
+        c.guardarBD();
+        
+        //c.cargarPeliculas();
     }
 }
