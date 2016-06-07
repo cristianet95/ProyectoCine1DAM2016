@@ -46,8 +46,9 @@ public class Cine {
         
     }
 
+    /*guarda todo el Arraylist pelis dentro de un fichero en el proyecto*/
      public void guardarBD() {
-        Iterator it = (Iterator)this.peliculas;
+        Iterator it = this.peliculas.iterator();
         PrintWriter pwf = null;
         try {
             pwf = new PrintWriter(new FileOutputStream("bd.txt"));
@@ -61,20 +62,27 @@ public class Cine {
         }
     }
     
-
+     /*Carga todas las peliculas desde el fichero hasta el ArrayList*/
     public void cargarPeliculas() {
         Scanner scf;
         Pelicula peli=null;
         String[] datosPeli;
-        scf = new Scanner("bd.txt");
-        while(scf.hasNextLine()){
+        try {
+            scf = new Scanner(new File("bd.txt"));
+            while(scf.hasNextLine()){
             datosPeli=scf.nextLine().split(";");
             for (int i = 0; i < datosPeli.length; i++) {
+                peli=new Pelicula();
                 peli.crearPeliculaBD(datosPeli[i]);
                 this.peliculas.add(peli);
             }
+            scf.close();
         }
-        scf.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
     }
 
     public static ArrayList<Pelicula> getPeliculas() {
