@@ -27,7 +27,7 @@ public class Sala {
 
     @Override
     public String toString() {
-        return "SALA Numero: " + this.numero + "\nFilas: " + this.filas + "\nTamaño de las Filas: " + this.tamFila + "\nSala 3D " + this.sala3d;
+        return "Numero" + this.numero + "Filas " + this.filas + "Tamaño fila " + this.tamFila + "Sala 3d " + this.sala3d;
     }
 
     public void modificarSala(int numero, int filas, int tamFila, boolean sala3d) {
@@ -74,4 +74,6 @@ public class Sala {
     public void setSala3d(boolean sala3d) {
         this.sala3d = sala3d;
     }
+    
+    
 }

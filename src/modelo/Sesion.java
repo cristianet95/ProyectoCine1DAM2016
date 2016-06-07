@@ -35,7 +35,7 @@ public class Sesion {
     @Override
     public String toString(){
         String cadena="";
-        cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero();
+        cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero()+"-"+this.sala.getFilas()+"-"+this.sala.getTamFila()+"-"+this.sala.isSala3d();
         return cadena;
     }
     public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente
@@ -48,6 +48,12 @@ public class Sesion {
         this.precio = Double.parseDouble(datosSesion[4]);
         this.sala=new Sala();
         this.sala.setNumero(Integer.parseInt(datosSesion[5]));
+        this.sala.setFilas(Integer.parseInt(datosSesion[6]));
+        this.sala.setTamFila(Integer.parseInt(datosSesion[7]));
+        boolean sala3d=false;
+        if(datosSesion[8].equals("true"))
+            sala3d=true;
+        this.sala.setSala3d(sala3d);
         
         return this;
     }
