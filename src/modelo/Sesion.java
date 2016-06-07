@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -19,6 +20,8 @@ public class Sesion {
     private double precio;
     ArrayList<Asiento> asientos;
     public Sala sala = null;
+    
+    public Sesion(){}
 
     public Sesion(String nombre, Date fecha, double precio) {
         this.nombre = nombre;
@@ -29,22 +32,24 @@ public class Sesion {
 
     @Override
     public String toString(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.fecha);
         String cadena="";
-        cadena+=this.nombre+"$"+this.fecha.toString()+"$"+this.precio+"$"+this.sala.getNumero();
+        cadena+=this.nombre+"-"+cal.get(Calendar.MONTH)+"-"+cal.get(Calendar.DATE)+"-"+cal.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero();
         return cadena;
     }
-    public Sesion crearSesionBD(String info){
-        Sesion sesion=null;
-        String[] datosSesion=info.split("$");
+    public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente
+        String[] datosSesion=info.split("-");
         this.nombre = datosSesion[0];
-        String[] datosFecha = datosSesion[1].split(" ");
-        int mes=Integer.parseInt(datosFecha[1]);
-        int dia=Integer.parseInt(datosFecha[2]);
-        int año=Integer.parseInt(datosFecha[5]);
+        int mes=Integer.parseInt(datosSesion[1]);
+        int dia=Integer.parseInt(datosSesion[2]);
+        int año=Integer.parseInt(datosSesion[3])-1900;
         this.fecha.setMonth(mes);
         this.fecha.setYear(año);
         this.fecha.setDate(dia);
-        this.precio = Double.parseDouble(datosSesion[2]);
+        this.precio = Double.parseDouble(datosSesion[4]);
+        this.sala=new Sala();
+        this.sala.setNumero(Integer.parseInt(datosSesion[5]));
         
         return this;
     }

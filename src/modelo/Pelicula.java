@@ -73,17 +73,17 @@ public class Pelicula {
     @Override
     public String toString() {
         String cadena = "";
-        cadena += this.titulo + "$" + this.nacionalidad + "$" + this.minutos + "$" + this.director + "$" + this.interprete + "$" + this.argumento + "$" + this.genero + "$" + this.clasificacion;
+        cadena += this.titulo + "_" + this.nacionalidad + "_" + this.minutos + "_" + this.director + "_" + this.interprete + "_" + this.argumento + "_" + this.genero + "_" + this.clasificacion;
         for (Sesion s : sesiones) {
-            cadena += "$";
+            cadena += "_";
             cadena+= s.toString();
         }
         cadena += ";";
         return cadena;
     }
-    public Pelicula crearPeliculaBD(String info){
-        Sesion sesion=null;
-        String[] datosPeli=info.split("$");//0 es titulo, 1 es minutos,..del 8 al final son sesiones
+    public Pelicula crearPeliculaBD(String info){//metodo que usa el metodo de cine de guardar en un fichero
+        Sesion sesion=new Sesion();
+        String[] datosPeli=info.split("_");//0 es titulo, 1 es minutos,..del 8 al final son sesiones
         this.titulo = datosPeli[0];
         this.nacionalidad = datosPeli[1];
         this.minutos = Integer.parseInt(datosPeli[2]);

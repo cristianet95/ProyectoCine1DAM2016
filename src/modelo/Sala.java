@@ -15,6 +15,8 @@ public class Sala {
     private int filas;
     private int tamFila;
     private boolean sala3d;
+    
+    public Sala(){}
 
     public Sala(int numero, int filas, int tamFila, boolean sala3d) {
         this.numero = numero;
