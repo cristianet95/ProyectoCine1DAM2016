@@ -20,7 +20,6 @@ public class Main {
     public static void main(String[] args) {
         Principal p= new Principal();
         Cine c=new Cine("PUNT");
-        Pelicula peli6=new Pelicula();
         Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
         Pelicula peli2 = new Pelicula("Civil war", "EEUU", 150, "Joe Russo, Anthony Russo", "Chris Evans, Robert Dawney jr", "Iron Man y el Capitan America estan enfrentados, la presion politica quiere controlar a Los Vengadores y cada uno tiene una opinion contraria, por lo que estalla una guerra civil entre ellos", "Accion y superheroes", "B");
         Pelicula peli3 = new Pelicula("Enemigo invisible", "EEUU", 102, "Gavin Hood", "Helen Miren", "Katherine Powell, una oficial de la inteligencia militar británica, lidera una operación secreta para capturar a un grupo de terroristas en Nairobi, Kenia. Cuando se da cuenta que los terroristas están en una misión suicida, ella debe cambiar sus planes de 'capturar' por 'matar'", "Thriller", "C");
@@ -33,15 +32,25 @@ public class Main {
         Sala sala5 = new Sala(5, 10, 40, true);
         Date fecha1 = new Date(2016, 6, 18);        
         Sesion sesion1 = new Sesion("m", fecha1, 9);
+        sesion1.sala=sala1;
         Date fecha2 = new Date(2016, 6, 20);        
         Sesion sesion2 = new Sesion("t", fecha2, 5);
+        sesion2.sala=sala2;
         Date fecha3 = new Date(2016, 7, 13);
         Sesion sesion3 = new Sesion("n", fecha3, 4);
+        sesion3.sala=sala3;
         Date fecha4 = new Date(2016, 7, 20);
         Sesion sesion4 = new Sesion("m", fecha4, 9);
+        sesion4.sala=sala4;
         Date fecha5 = new Date(2016, 8, 5);
         Sesion sesion5 = new Sesion("n", fecha5, 8);
-        p.setVisible(true);
+        sesion5.sala=sala5;
+        peli1.anadirSesion(sesion1);
+        peli1.anadirSesion(sesion2);
+        peli1.anadirSesion(sesion3);
+        peli2.anadirSesion(sesion5);
+        peli3.anadirSesion(sesion4);
+        peli3.anadirSesion(sesion1);
         
         c.añadirPeli(peli1);
         c.añadirPeli(peli2);
