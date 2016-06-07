@@ -62,6 +62,9 @@ public class CrearPelicula extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Minutos");
 
+        minutos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        minutos.setText("0");
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Director");
 
@@ -174,7 +177,7 @@ public class CrearPelicula extends javax.swing.JFrame {
         Pelicula p;
         String nomPeli, nacionalidad, director, interpretes, argumento, genero, clasificacion;
         int minutos = 0;
-
+        
         nomPeli = this.nombrePelicula.getText();
         nacionalidad = this.nacionalidad.getText();
         director = this.director.getText();
@@ -187,7 +190,8 @@ public class CrearPelicula extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
         }else{
             p= new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
-            /*controlador.Cine.añadirPeli(p);*/
+            controlador.Cine.añadirPeli(p);
+            JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
         }
     }//GEN-LAST:event_añadirCrearPeliculaActionPerformed
 

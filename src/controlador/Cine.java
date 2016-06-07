@@ -21,33 +21,30 @@ import modelo.Pelicula;
 public class Cine {
 
     private String nombre;
-    ArrayList<Pelicula> peliculas;
+    static ArrayList<Pelicula> peliculas= new ArrayList<>();
 
     public Cine(String nombre) {
         this.nombre = nombre;
-        this.peliculas = new ArrayList<>();
     }
 
-    public Pelicula buscarPeli(String titulo) {
-        for (Pelicula p : this.peliculas) {
-            if (p.getTitutlo().equals(titulo)) {
-                return p;
+    public static Pelicula buscarPeli(String titulo) {
+        for (int i = 0; i < peliculas.size(); i++) {
+            if(peliculas.get(i).getTitutlo().equals(titulo)){
+                return peliculas.get(i);
             }
         }
         return null;
     }
 
-    public void añadirPeli(Pelicula p) {
+    public static void añadirPeli(Pelicula p) {
         peliculas.add(p);
         
     }
 
-    public void eliminarPeli(Pelicula p) {
+    public static void eliminarPeli(Pelicula p) {
         peliculas.remove(p);
         
     }
-
-    
 
      public void guardarBD() {
         Iterator it = (Iterator)this.peliculas;
@@ -80,7 +77,7 @@ public class Cine {
         scf.close();
     }
 
-    public ArrayList<Pelicula> getPeliculas() {
+    public static ArrayList<Pelicula> getPeliculas() {
         return peliculas;
     }
 

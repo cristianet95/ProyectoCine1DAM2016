@@ -6,6 +6,7 @@
 package Vista;
 
 import java.util.ArrayList;
+import modelo.Pelicula;
 
 /**
  *
@@ -23,15 +24,15 @@ public class EliminarPelicula extends javax.swing.JFrame {
     }
 
     private void cargarComboClientes() {
-        /*ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
+        ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
         
-        if (peliculas.isEmpty()) {
+        if (peliculas == null) {
             this.NombreEliminarPelicula.addItem("");
         } else {
             for (int i = 0; i < peliculas.size(); i++) {
-                this.NombreEliminarPelicula.addItem(peliculas.get(i).getTitulo());
+                this.NombreEliminarPelicula.addItem(peliculas.get(i).getTitutlo());
             }
-        }*/
+        }
     }
 
     /**
@@ -100,8 +101,12 @@ public class EliminarPelicula extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPeliculaActionPerformed
-        /*Pelicula p = main.buscarPeli(this.NombreEliminarPelicula.getSelectedItem().toString());
-        main.borrarPeli(p);*/
+        Pelicula p = controlador.Cine.buscarPeli(this.NombreEliminarPelicula.getSelectedItem().toString());
+        
+        if(p != null){
+             controlador.Cine.eliminarPeli(p);
+        }
+       
     }//GEN-LAST:event_botonEliminarPeliculaActionPerformed
 
     /**

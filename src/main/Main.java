@@ -18,6 +18,7 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
+        Principal p= new Principal();
         Cine c=new Cine("PUNT");
         Pelicula peli6=new Pelicula();
         Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
@@ -40,8 +41,6 @@ public class Main {
         Sesion sesion4 = new Sesion("m", fecha4, 9);
         Date fecha5 = new Date(2016, 8, 5);
         Sesion sesion5 = new Sesion("n", fecha5, 8);
-        
-        Principal p= new Principal();
         p.setVisible(true);
     }
 }
