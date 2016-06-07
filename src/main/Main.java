@@ -22,7 +22,8 @@ public class Main {
     public static void main(String[] args) {
         Principal p= new Principal();
         Cine c=new Cine("PUNT");
-        Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
+        //Base de datos
+        /*Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
         Pelicula peli2 = new Pelicula("Civil war", "EEUU", 150, "Joe Russo, Anthony Russo", "Chris Evans, Robert Dawney jr", "Iron Man y el Capitan America estan enfrentados, la presion politica quiere controlar a Los Vengadores y cada uno tiene una opinion contraria, por lo que estalla una guerra civil entre ellos", "Accion y superheroes", "B");
         Pelicula peli3 = new Pelicula("Enemigo invisible", "EEUU", 102, "Gavin Hood", "Helen Miren", "Katherine Powell, una oficial de la inteligencia militar británica, lidera una operación secreta para capturar a un grupo de terroristas en Nairobi, Kenia. Cuando se da cuenta que los terroristas están en una misión suicida, ella debe cambiar sus planes de 'capturar' por 'matar'", "Thriller", "C");
         Pelicula peli4 = new Pelicula("Aterriza como puedas", "EEUU", 88, "David Zucker, Jerry Zucker, Jim Abrahams", "Leslie Nielsen, Robert Hays, Julie Hagerty, LLoyd Bridges, Peter Graves, Lorna Patterson", "El vuelo 209 de la Trans American sale de Los Ángeles con destino a Chicago. Entre el pasaje se encuentran una serie de curiosos personajes. Entre ellos, un ex-piloto de combate que, en pleno vuelo, se verá obligado a hacerse con el mando del avión comercial, tras quedar los pilotos indispuestos por una comida en mal estado", "Comedia", "Para todos los publicos");
@@ -60,15 +61,9 @@ public class Main {
         c.añadirPeli(peli3);
         c.añadirPeli(peli4);
         c.añadirPeli(peli5);
-        //Prueba de todos los metodos
-        Pelicula peliAux=new Pelicula();
-        peliAux=c.buscarPeli("X-men apocalypse");
-        System.out.println(peliAux.toString());
-        c.eliminarPeli(peli5);
-        peliAux=c.buscarPeli("Aterriza como puedas");
-        System.out.println(peliAux.toString());
-        c.guardarBD();
         
-        //c.cargarPeliculas();
+        c.guardarBD();*/
+        
+        c.cargarPeliculas();
     }
 }

@@ -7,7 +7,6 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -21,7 +20,10 @@ public class Sesion {
     ArrayList<Asiento> asientos;
     public Sala sala = null;
     
-    public Sesion(){}
+    public Sesion(){
+        this.fecha=Calendar.getInstance();
+        this.asientos=new ArrayList();
+    }
 
     public Sesion(String nombre, Calendar fecha, double precio) {
         this.nombre = nombre;
@@ -41,7 +43,7 @@ public class Sesion {
         this.nombre = datosSesion[0];
         int mes=Integer.parseInt(datosSesion[1]);
         int dia=Integer.parseInt(datosSesion[2]);
-        int año=Integer.parseInt(datosSesion[3])-1900;
+        int año=Integer.parseInt(datosSesion[3]);
         this.fecha.set(año, mes, dia);
         this.precio = Double.parseDouble(datosSesion[4]);
         this.sala=new Sala();

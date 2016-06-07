@@ -70,14 +70,11 @@ public class Cine {
         try {
             scf = new Scanner(new File("bd.txt"));
             while(scf.hasNextLine()){
-                datosPeli=scf.nextLine().split(";");
-                for (int i = 0; i < datosPeli.length; i++) {
-                    peli=new Pelicula();
-                    peli.crearPeliculaBD(datosPeli[i]);
-                    this.peliculas.add(peli);
-                }
-                scf.close();
+                peli=new Pelicula();
+                peli.crearPeliculaBD(scf.nextLine());
+                this.peliculas.add(peli);
             }
+            scf.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         }

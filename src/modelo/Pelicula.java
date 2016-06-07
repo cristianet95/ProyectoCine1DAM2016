@@ -29,6 +29,7 @@ public class Pelicula {
     Pelicula activa = null;
 
     public Pelicula() {
+        this.sesiones = new ArrayList<>();
     }
 
     public Pelicula(String titulo, String nacionalidad, int minutos, String director, String interprete, String argumento, String genero, String clasificacion) {
@@ -79,7 +80,6 @@ public class Pelicula {
             cadena += "_";
             cadena+= s.toString();
         }
-        cadena += ";";
         return cadena;
     }
     public Pelicula crearPeliculaBD(String info){//metodo que usa el metodo de cine de guardar en un fichero
