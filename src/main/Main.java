@@ -64,6 +64,6 @@ public class Main {
         
         c.guardarBD();*/
         
-        c.cargarPeliculas();
+        //c.cargarPeliculas();
     }
 }
