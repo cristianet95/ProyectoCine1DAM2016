@@ -5,6 +5,8 @@
  */
 package main;
 
+import Vista.Principal;
+import controlador.Cine;
 import modelo.Pelicula;
 import modelo.Sala;
 import modelo.Sesion;
@@ -16,6 +18,7 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
+        Cine c=new Cine("PUNT");
         Pelicula peli6=new Pelicula();
         Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
         Pelicula peli2 = new Pelicula("Civil war", "EEUU", 150, "Joe Russo, Anthony Russo", "Chris Evans, Robert Dawney jr", "Iron Man y el Capitan America estan enfrentados, la presion politica quiere controlar a Los Vengadores y cada uno tiene una opinion contraria, por lo que estalla una guerra civil entre ellos", "Accion y superheroes", "B");
@@ -38,5 +41,7 @@ public class Main {
         Date fecha5 = new Date(2016, 8, 5);
         Sesion sesion5 = new Sesion("n", fecha5, 8);
         
+        Principal p= new Principal();
+        p.setVisible(true);
     }
 }
