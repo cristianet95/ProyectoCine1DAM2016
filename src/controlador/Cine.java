@@ -22,8 +22,8 @@ import modelo.Sala;
 public class Cine {
 
     private String nombre;
-    static ArrayList<Pelicula> peliculas= new ArrayList<>();
-    static ArrayList<Sala> salas = new ArrayList<>();
+    public static ArrayList<Pelicula> peliculas= new ArrayList<>();
+    public static ArrayList<Sala> salas = new ArrayList<>();
 
     public Cine(String nombre) {
         this.nombre = nombre;

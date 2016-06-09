@@ -74,5 +74,7 @@ public class Main {
         
         c.cargarPeliculas();
         c.cargarSalas();
+        System.out.println(c.salas.size());
+        System.out.println(c.peliculas.size());
     }
 }
