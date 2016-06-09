@@ -62,8 +62,10 @@ public class Main {
         c.añadirPeli(peli4);
         c.añadirPeli(peli5);
         
-        c.guardarBD();*/
+        c.
         
-        //c.cargarPeliculas();
+        c.guardarBD();
+        
+        c.cargarPeliculas();*/
     }
 }

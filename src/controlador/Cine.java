@@ -100,6 +100,41 @@ public class Cine {
         
         
     }
+    /*guarda todo el Arraylist salas dentro de un fichero en el proyecto*/
+     public void guardarSalasBD() {
+        Iterator it = this.salas.iterator();
+        PrintWriter pwf = null;
+        try {
+            pwf = new PrintWriter(new FileOutputStream("bdSalas.txt"));
+            while (it.hasNext()) {
+                pwf.println(it.next().toString());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            pwf.close();
+        }
+    }
+    
+     /*Carga todas las salas desde el fichero hasta el ArrayList*/
+    public void cargarSalas() {
+        Scanner scf;
+        Sala sala=null;
+        String[] datosSala;
+        try {
+            scf = new Scanner(new File("bd.txt"));
+            while(scf.hasNextLine()){
+                sala=new Sala();
+                sala.crearSalaBD(scf.nextLine());
+                this.salas.add(sala);
+            }
+            scf.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+    }
 
     public static ArrayList<Pelicula> getPeliculas() {
         return peliculas;
