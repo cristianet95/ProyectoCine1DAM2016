@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+import modelo.Pelicula;
+
 /**
  *
  * @author USUARIO
@@ -16,8 +19,44 @@ public class ModificarPelicula extends javax.swing.JFrame {
      */
     public ModificarPelicula() {
         initComponents();
+        this.nombreModificarPelicula.removeAllItems();
+        cargarComboClientes();
+        cargarInfoPelicula();
     }
+    
+    private void cargarComboClientes() {
+        ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
+        
+        if (peliculas == null) {
+            this.nombreModificarPelicula.addItem("");
+        } else {
+            for (int i = 0; i < peliculas.size(); i++) {
+                this.nombreModificarPelicula.addItem(peliculas.get(i).getTitutlo());
+            }
+        }
+    }
+    
+    private void cargarInfoPelicula(){
+        Pelicula p = controlador.Cine.buscarPeli(this.nombreModificarPelicula.getSelectedItem().toString());
 
+        if (p != null){
+            this.nombrePelicula.setText(p.getTitutlo());
+            this.nacionalidad.setText(p.getNacionalidad());
+            this.minutos.setText(Integer.toString(p.getMinutos()));
+            this.director.setText(p.getDirector());
+            this.interpretes.setText(p.getInterprete());
+            this.genero.setText(p.getGenero());
+            this.clasificacion.setText(p.getClasificacion());
+        }else{
+            this.nombrePelicula.setText("");
+            this.nacionalidad.setText("");
+            this.minutos.setText("");
+            this.director.setText("");
+            this.interpretes.setText("");
+            this.genero.setText("");
+            this.clasificacion.setText("");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,13 +79,15 @@ public class ModificarPelicula extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         interpretes = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        genero = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         clasificacion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        argumento = new javax.swing.JTextArea();
         confirmarModificarPelicula = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        nombreModificarPelicula = new javax.swing.JComboBox();
 
         jTextField1.setText("jTextField1");
 
@@ -79,12 +120,22 @@ public class ModificarPelicula extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Argumento");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        argumento.setColumns(20);
+        argumento.setRows(5);
+        jScrollPane1.setViewportView(argumento);
 
         confirmarModificarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmarModificarPelicula.setText("Confirmar");
+        confirmarModificarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarModificarPeliculaActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Seleccionar Pelicula");
+
+        nombreModificarPelicula.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +157,8 @@ public class ModificarPelicula extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nombrePelicula)
@@ -114,9 +166,10 @@ public class ModificarPelicula extends javax.swing.JFrame {
                             .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(director)
                             .addComponent(interpretes)
-                            .addComponent(jTextField2)
+                            .addComponent(genero)
                             .addComponent(clasificacion)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                            .addComponent(nombreModificarPelicula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(confirmarModificarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -127,7 +180,11 @@ public class ModificarPelicula extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(nombreModificarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nombrePelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,7 +207,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -159,13 +216,18 @@ public class ModificarPelicula extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(confirmarModificarPelicula)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void confirmarModificarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarPeliculaActionPerformed
+
+        
+    }//GEN-LAST:event_confirmarModificarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,11 +265,14 @@ public class ModificarPelicula extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea argumento;
     private javax.swing.JTextField clasificacion;
     private javax.swing.JButton confirmarModificarPelicula;
     private javax.swing.JTextField director;
+    private javax.swing.JTextField genero;
     private javax.swing.JTextField interpretes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -217,11 +282,10 @@ public class ModificarPelicula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField minutos;
     private javax.swing.JTextField nacionalidad;
+    private javax.swing.JComboBox nombreModificarPelicula;
     private javax.swing.JTextField nombrePelicula;
     // End of variables declaration//GEN-END:variables
 }
