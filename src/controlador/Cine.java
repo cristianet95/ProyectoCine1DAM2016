@@ -25,6 +25,7 @@ public class Cine {
     public static ArrayList<Pelicula> peliculas= new ArrayList<>();
     public static ArrayList<Sala> salas = new ArrayList<>();
 
+    public Cine(){}
     public Cine(String nombre) {
         this.nombre = nombre;
     }
@@ -66,7 +67,7 @@ public class Cine {
     }
 
     /*guarda todo el Arraylist pelis dentro de un fichero en el proyecto*/
-     public void guardarBD() {
+     public void exportarBD() {
         Iterator it = this.peliculas.iterator();
         PrintWriter pwf = null;
         try {
@@ -82,7 +83,7 @@ public class Cine {
     }
     
      /*Carga todas las peliculas desde el fichero hasta el ArrayList*/
-    public void cargarPeliculas() {
+    public void importarPeliculas() {
         Scanner scf;
         Pelicula peli=null;
         String[] datosPeli;
@@ -101,7 +102,7 @@ public class Cine {
         
     }
     /*guarda todo el Arraylist salas dentro de un fichero en el proyecto*/
-     public void guardarSalasBD() {
+     public void exportarSalasBD() {
         Iterator it = this.salas.iterator();
         PrintWriter pwf = null;
         try {
@@ -117,7 +118,7 @@ public class Cine {
     }
     
      /*Carga todas las salas desde el fichero hasta el ArrayList*/
-    public void cargarSalas() {
+    public void importarSalas() {
         Scanner scf;
         Sala sala=null;
         String[] datosSala;
