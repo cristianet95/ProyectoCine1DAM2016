@@ -144,7 +144,7 @@ public class Cine {
     public void setPeliculas(ArrayList<Pelicula> peliculas) {
         this.peliculas = peliculas;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

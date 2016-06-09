@@ -20,10 +20,10 @@ public class EliminarPelicula extends javax.swing.JFrame {
      */
     public EliminarPelicula() {
         initComponents();
-        cargarComboClientes();
+        cargarComboPeliculas();
     }
 
-    private void cargarComboClientes() {
+    private void cargarComboPeliculas() {
         this.NombreEliminarPelicula.removeAllItems();
         ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
         
@@ -106,7 +106,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
         
         if(p != null){
              controlador.Cine.eliminarPeli(p);
-             cargarComboClientes();
+             cargarComboPeliculas();
              JOptionPane.showMessageDialog(this, "La pelicula se ha eliminado correctamente");
         }
        

@@ -182,4 +182,13 @@ public class Pelicula {
     public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
     }
+
+    public static ArrayList<Sesion> getSesiones() {
+        return sesiones;
+    }
+
+    public static void setSesiones(ArrayList<Sesion> sesiones) {
+        Pelicula.sesiones = sesiones;
+    }
+    
 }

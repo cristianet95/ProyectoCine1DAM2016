@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+import modelo.Sesion;
+
 /**
  *
  * @author USUARIO
@@ -16,8 +19,21 @@ public class EliminarSesion extends javax.swing.JFrame {
      */
     public EliminarSesion() {
         initComponents();
+        cargarComboSesiones();
     }
-
+    
+    private void cargarComboSesiones(){
+        this.nombreEliminarSesion.removeAllItems();
+        ArrayList<Sesion> sesiones = modelo.Pelicula.getSesiones();
+        
+        if (sesiones == null) {
+            this.nombreEliminarSesion.addItem("");
+        } else {
+            for (int i = 0; i < sesiones.size(); i++) {
+                this.nombreEliminarSesion.addItem(sesiones.get(i).getNombre());
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +46,7 @@ public class EliminarSesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         eliminarSesion = new javax.swing.JButton();
-        eliminarNombreSesion = new javax.swing.JComboBox();
+        nombreEliminarSesion = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Eliminar Sesion");
@@ -41,7 +57,7 @@ public class EliminarSesion extends javax.swing.JFrame {
         eliminarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarSesion.setText("Eliminar");
 
-        eliminarNombreSesion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nombreEliminarSesion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,7 +74,7 @@ public class EliminarSesion extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(130, 130, 130))
-                            .addComponent(eliminarNombreSesion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(nombreEliminarSesion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,7 +85,7 @@ public class EliminarSesion extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(eliminarNombreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreEliminarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(eliminarSesion)
                 .addGap(116, 116, 116))
@@ -114,9 +130,9 @@ public class EliminarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox eliminarNombreSesion;
     private javax.swing.JButton eliminarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox nombreEliminarSesion;
     // End of variables declaration//GEN-END:variables
 }
