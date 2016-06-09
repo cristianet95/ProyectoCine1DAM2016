@@ -83,7 +83,7 @@ public class Sesion {
     public void crearReserva(int fila, int num) {
         if (buscarAsiento(fila, num) != null) {
             Asiento a = buscarAsiento(fila, num);
-            if (!confirmarReserva(a) && a.getDispo() != Disponibilidad.OCUPADO) {
+            if (!confirmarReserva(a)) {
                 a.setDispo(Disponibilidad.RESERVADO);
             } else {
                 System.out.println("El asiento no esta disponible");
@@ -107,7 +107,7 @@ public class Sesion {
     }
 
     public boolean confirmarReserva(Asiento a) {
-        if (a.getDispo().equals(Disponibilidad.RESERVADO)) {
+        if (a.getDispo().equals(Disponibilidad.OCUPADO)) {
             return true;
         } else {
             return false;
