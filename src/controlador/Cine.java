@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 import modelo.Pelicula;
+import modelo.Sala;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Cine {
 
     private String nombre;
     static ArrayList<Pelicula> peliculas= new ArrayList<>();
+    static ArrayList<Sala> salas = new ArrayList<>();
 
     public Cine(String nombre) {
         this.nombre = nombre;
@@ -43,6 +45,15 @@ public class Cine {
 
     public static void eliminarPeli(Pelicula p) {
         peliculas.remove(p);
+        
+    }
+    public static void añadirSala(Sala s) {
+        salas.add(s);
+        
+    }
+
+    public static void eliminarSala(Sala s) {
+        salas.remove(s);
         
     }
 

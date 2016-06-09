@@ -55,6 +55,11 @@ public class CrearSesion extends javax.swing.JFrame {
 
         crearSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         crearSesion.setText("Crear");
+        crearSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,6 +114,10 @@ public class CrearSesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void crearSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crearSesionActionPerformed
 
     /**
      * @param args the command line arguments
