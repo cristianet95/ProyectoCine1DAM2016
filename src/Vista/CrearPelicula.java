@@ -8,6 +8,7 @@ package Vista;
 import javax.swing.JOptionPane;
 import modelo.Pelicula;
 import controlador.*;
+
 /**
  *
  * @author USUARIO
@@ -177,7 +178,7 @@ public class CrearPelicula extends javax.swing.JFrame {
         Pelicula p;
         String nomPeli, nacionalidad, director, interpretes, argumento, genero, clasificacion;
         int minutos = 0;
-        
+
         nomPeli = this.nombrePelicula.getText();
         nacionalidad = this.nacionalidad.getText();
         director = this.director.getText();
@@ -185,19 +186,25 @@ public class CrearPelicula extends javax.swing.JFrame {
         argumento = this.argumento.getText();
         genero = this.genero.getText();
         clasificacion = this.clasificacion.getText();
-        minutos= Integer.parseInt(this.minutos.getText());
-        if (nomPeli.equals("") || nacionalidad.equals("") || director.equals("") || interpretes.equals("") || argumento.equals("") || genero.equals("") || clasificacion.equals("") || minutos == 0) {
+        minutos = Integer.parseInt(this.minutos.getText());
+        
+        if (nomPeli.equals("") || nacionalidad.equals("") || director.equals("") || interpretes.equals("") || argumento.equals("") || genero.equals("") || clasificacion.equals("")) {
             JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
-        }else{
-            p= new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
-            controlador.Cine.añadirPeli(p);
-            JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+        } else {
+            if (minutos == 0) {
+                 JOptionPane.showMessageDialog(this, "La pelicula debe durar  mas de 0 minutos");   
+            } else {
+
+                p = new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
+                controlador.Cine.añadirPeli(p);
+                JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+            }
         }
     }//GEN-LAST:event_añadirCrearPeliculaActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

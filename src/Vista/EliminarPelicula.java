@@ -6,6 +6,7 @@
 package Vista;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Pelicula;
 
 /**
@@ -19,11 +20,11 @@ public class EliminarPelicula extends javax.swing.JFrame {
      */
     public EliminarPelicula() {
         initComponents();
-        this.NombreEliminarPelicula.removeAllItems();
         cargarComboClientes();
     }
 
     private void cargarComboClientes() {
+        this.NombreEliminarPelicula.removeAllItems();
         ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
         
         if (peliculas == null) {
@@ -105,6 +106,8 @@ public class EliminarPelicula extends javax.swing.JFrame {
         
         if(p != null){
              controlador.Cine.eliminarPeli(p);
+             cargarComboClientes();
+             JOptionPane.showMessageDialog(this, "La pelicula se ha eliminado correctamente");
         }
        
     }//GEN-LAST:event_botonEliminarPeliculaActionPerformed
