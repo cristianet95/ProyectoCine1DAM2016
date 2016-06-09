@@ -62,6 +62,8 @@ public class ModificarPelicula extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Minutos");
 
+        minutos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Director");
 
