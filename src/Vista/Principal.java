@@ -39,6 +39,14 @@ public class Principal extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu14 = new javax.swing.JMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        clienteUsuario = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        clientePassword = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Pelicula = new javax.swing.JMenu();
         CrearPelicula = new javax.swing.JCheckBoxMenuItem();
@@ -52,10 +60,6 @@ public class Principal extends javax.swing.JFrame {
         CrearSesion = new javax.swing.JCheckBoxMenuItem();
         ModificarSesion = new javax.swing.JCheckBoxMenuItem();
         EliminarSesion = new javax.swing.JCheckBoxMenuItem();
-        Reserva = new javax.swing.JMenu();
-        añadirReserva = new javax.swing.JCheckBoxMenuItem();
-        eliminarReserva = new javax.swing.JCheckBoxMenuItem();
-        confirmarReserva = new javax.swing.JCheckBoxMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -83,7 +87,31 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Administrador");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Usuario");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Password");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Crear Reserva ");
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setText("Eliminar Reserva");
+
         Pelicula.setText("Pelicula");
+        Pelicula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         CrearPelicula.setSelected(true);
         CrearPelicula.setText("Crear");
@@ -176,48 +204,56 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(Sesion);
 
-        Reserva.setText("Reserva");
-
-        añadirReserva.setSelected(true);
-        añadirReserva.setText("Añadir Reserva");
-        añadirReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                añadirReservaActionPerformed(evt);
-            }
-        });
-        Reserva.add(añadirReserva);
-
-        eliminarReserva.setSelected(true);
-        eliminarReserva.setText("Eliminar Reserva");
-        eliminarReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarReservaActionPerformed(evt);
-            }
-        });
-        Reserva.add(eliminarReserva);
-
-        confirmarReserva.setSelected(true);
-        confirmarReserva.setText("Confirmar Reserva");
-        confirmarReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarReservaActionPerformed(evt);
-            }
-        });
-        Reserva.add(confirmarReserva);
-
-        jMenuBar1.add(Reserva);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(clienteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(clientePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(clienteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(clientePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(56, 56, 56)
+                .addComponent(jButton1)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,20 +304,10 @@ public class Principal extends javax.swing.JFrame {
         alt_eliminarSesion.setVisible(true);
     }//GEN-LAST:event_EliminarSesionActionPerformed
 
-    private void añadirReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirReservaActionPerformed
-        Vista.CrearReserva alt_crearReserva= new Vista.CrearReserva();
-        alt_crearReserva.setVisible(true);
-    }//GEN-LAST:event_añadirReservaActionPerformed
-
-    private void eliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarReservaActionPerformed
-        Vista.EliminarReserva alt_eliminarReserva= new Vista.EliminarReserva();
-        alt_eliminarReserva.setVisible(true);
-    }//GEN-LAST:event_eliminarReservaActionPerformed
-
-    private void confirmarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarReservaActionPerformed
-        Vista.ConfirmarReserva alt_confirmarReserva= new Vista.ConfirmarReserva();
-        alt_confirmarReserva.setVisible(true);
-    }//GEN-LAST:event_confirmarReservaActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Vista.Administrador alt_administrador= new Vista.Administrador();
+        alt_administrador.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,12 +355,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem ModificarSala;
     private javax.swing.JCheckBoxMenuItem ModificarSesion;
     private javax.swing.JMenu Pelicula;
-    private javax.swing.JMenu Reserva;
     private javax.swing.JMenu Sala;
     private javax.swing.JMenu Sesion;
-    private javax.swing.JCheckBoxMenuItem añadirReserva;
-    private javax.swing.JCheckBoxMenuItem confirmarReserva;
-    private javax.swing.JCheckBoxMenuItem eliminarReserva;
+    private javax.swing.JTextField clientePassword;
+    private javax.swing.JTextField clienteUsuario;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu14;
