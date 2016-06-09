@@ -122,7 +122,7 @@ public class Cine {
         Sala sala=null;
         String[] datosSala;
         try {
-            scf = new Scanner(new File("bd.txt"));
+            scf = new Scanner(new File("bdSalas.txt"));
             while(scf.hasNextLine()){
                 sala=new Sala();
                 sala.crearSalaBD(scf.nextLine());
