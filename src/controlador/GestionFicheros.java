@@ -19,7 +19,7 @@ public class GestionFicheros {
     public GestionFicheros() {
         this.cine = new Cine();
     }
-    
+    /*Carga la bd con peliculas y sesiones solo se debe si quieres cargar tu bd con algo para pruebas*/
     public void importarBDInicial(){
         Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
         Pelicula peli2 = new Pelicula("Civil war", "EEUU", 150, "Joe Russo, Anthony Russo", "Chris Evans, Robert Dawney jr", "Iron Man y el Capitan America estan enfrentados, la presion politica quiere controlar a Los Vengadores y cada uno tiene una opinion contraria, por lo que estalla una guerra civil entre ellos", "Accion y superheroes", "B");
@@ -72,6 +72,16 @@ public class GestionFicheros {
         
         this.cine.importarPeliculas();
         this.cine.importarSalas();
+    }
+    
+    //estos metodos importan y exportan a la BD cada vez que se requiera
+    public void importarBD(){
+        this.cine.importarPeliculas();
+        this.cine.importarSalas();
+    }
+    public void exportarBD(){
+        this.cine.exportarBD();
+        this.cine.exportarSalasBD();
     }
     
     
