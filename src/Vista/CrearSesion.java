@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import modelo.Pelicula;
+import modelo.Sala;
+import modelo.Sesion;
+
 /**
  *
  * @author USUARIO
@@ -29,13 +35,13 @@ public class CrearSesion extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nombreSesion = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Data = new javax.swing.JTextField();
+        campoFecha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        sala = new javax.swing.JTextField();
+        campoSala = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        precio = new javax.swing.JTextField();
+        campoPrecio = new javax.swing.JTextField();
         crearSesion = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -43,6 +49,12 @@ public class CrearSesion extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre Sesion");
+
+        campoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNombreActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Dia y Hora");
@@ -79,11 +91,11 @@ public class CrearSesion extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(nombreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(sala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                .addComponent(Data, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(campoSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                .addComponent(campoFecha, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,19 +106,19 @@ public class CrearSesion extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(nombreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(sala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(crearSesion)
                 .addGap(61, 61, 61))
@@ -116,8 +128,33 @@ public class CrearSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSesionActionPerformed
-        // TODO add your handling code here:
+        Sesion sesion;
+        String nombre=campoPrecio.getText();
+        String[] datosFecha=campoFecha.getText().split("-");
+        int mes=Integer.parseInt(datosFecha[1]);
+        int dia=Integer.parseInt(datosFecha[2]);
+        int año=Integer.parseInt(datosFecha[3]);
+        Calendar fecha=null;
+        fecha.set(año,mes,dia);
+        
+        Sala sala=controlador.Cine.buscarSala(Integer.parseInt(campoSala.getText()));
+        if (sala==null) {
+            JOptionPane.showMessageDialog(this, "La sala no existe");
+        }else{
+            double precio = Double.parseDouble(campoPrecio.getText());
+            if (nombre.equals("") || campoFecha.getText().equals("") || campoSala.getText().equals("") || campoPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
+            } else {
+                sesion = new Sesion(nombre, fecha, precio);
+                modelo.Pelicula.anadirSesion(sesion);
+                JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+            }
+        }
     }//GEN-LAST:event_crearSesionActionPerformed
+
+    private void campoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,15 +192,15 @@ public class CrearSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Data;
+    private javax.swing.JTextField campoFecha;
+    private javax.swing.JTextField campoNombre;
+    private javax.swing.JTextField campoPrecio;
+    private javax.swing.JTextField campoSala;
     private javax.swing.JButton crearSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField nombreSesion;
-    private javax.swing.JTextField precio;
-    private javax.swing.JTextField sala;
     // End of variables declaration//GEN-END:variables
 }

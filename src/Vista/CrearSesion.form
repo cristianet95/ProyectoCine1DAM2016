@@ -36,12 +36,12 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreSesion" min="-2" pref="372" max="-2" attributes="0"/>
+                          <Component id="campoNombre" min="-2" pref="372" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="sala" alignment="0" pref="159" max="32767" attributes="0"/>
-                              <Component id="Data" alignment="0" max="32767" attributes="0"/>
+                              <Component id="campoSala" alignment="0" pref="159" max="32767" attributes="0"/>
+                              <Component id="campoFecha" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="precio" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="campoPrecio" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -57,22 +57,22 @@
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Data" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoFecha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="sala" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoSala" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="precio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="46" max="32767" attributes="0"/>
               <Component id="crearSesion" min="-2" max="-2" attributes="0"/>
@@ -98,7 +98,10 @@
         <Property name="text" type="java.lang.String" value="Nombre Sesion"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombreSesion">
+    <Component class="javax.swing.JTextField" name="campoNombre">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNombreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -108,7 +111,7 @@
         <Property name="text" type="java.lang.String" value="Dia y Hora"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Data">
+    <Component class="javax.swing.JTextField" name="campoFecha">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -118,7 +121,7 @@
         <Property name="text" type="java.lang.String" value="Sala"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="sala">
+    <Component class="javax.swing.JTextField" name="campoSala">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -128,7 +131,7 @@
         <Property name="text" type="java.lang.String" value="Precio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="precio">
+    <Component class="javax.swing.JTextField" name="campoPrecio">
     </Component>
     <Component class="javax.swing.JButton" name="crearSesion">
       <Properties>

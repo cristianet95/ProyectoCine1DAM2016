@@ -24,7 +24,7 @@ public class Pelicula {
     private String argumento;
     private String genero;
     private String clasificacion;
-    ArrayList<Sesion> sesiones;
+    static ArrayList<Sesion> sesiones;
     File fichero = null;
     Pelicula activa = null;
 
@@ -99,8 +99,8 @@ public class Pelicula {
         return this;
     }
 
-    public void anadirSesion(Sesion session) {
-        this.sesiones.add(session);
+    public static void anadirSesion(Sesion sesion) {
+        sesiones.add(sesion);
     }
 
     public void eliminarSesion(String nombre, Calendar fecha) {
