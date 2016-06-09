@@ -37,6 +37,14 @@ public class Cine {
         }
         return null;
     }
+    public static Sala buscarSala(int numero) {
+        for (int i = 0; i < salas.size(); i++) {
+            if(salas.get(i).getNumero()==numero){
+                return salas.get(i);
+            }
+        }
+        return null;
+    }
 
     public static void añadirPeli(Pelicula p) {
         peliculas.add(p);
