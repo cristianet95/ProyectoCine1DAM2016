@@ -14,10 +14,10 @@ import modelo.*;
  */
 public class GestionFicheros {
     
-    public Cine cine;
+    
 
     public GestionFicheros() {
-        this.cine = new Cine();
+        
     }
     /*Carga la bd con peliculas y sesiones solo se debe si quieres cargar tu bd con algo para pruebas*/
     public void importarBDInicial(){
@@ -54,46 +54,39 @@ public class GestionFicheros {
         peli3.anadirSesion(sesion4);
         peli3.anadirSesion(sesion1);
         
-        this.cine.añadirPeli(peli1);
-        this.cine.añadirPeli(peli2);
-        this.cine.añadirPeli(peli3);
-        this.cine.añadirPeli(peli4);
-        this.cine.añadirPeli(peli5);
+        controlador.Cine.añadirPeli(peli1);
+        controlador.Cine.añadirPeli(peli2);
+        controlador.Cine.añadirPeli(peli3);
+        controlador.Cine.añadirPeli(peli4);
+        controlador.Cine.añadirPeli(peli5);
         
         
-        this.cine.añadirSala(sala1);
-        this.cine.añadirSala(sala2);
-        this.cine.añadirSala(sala3);
-        this.cine.añadirSala(sala4);
-        this.cine.añadirSala(sala5);
+        controlador.Cine.añadirSala(sala1);
+        controlador.Cine.añadirSala(sala2);
+        controlador.Cine.añadirSala(sala3);
+        controlador.Cine.añadirSala(sala4);
+        controlador.Cine.añadirSala(sala5);
         
-        this.cine.exportarBD();
-        this.cine.exportarSalasBD();
+        controlador.Cine.exportarBD();
+        controlador.Cine.exportarSalasBD();
         
-        this.cine.importarPeliculas();
-        this.cine.importarSalas();
+        controlador.Cine.importarPeliculas();
+        controlador.Cine.importarSalas();
     }
     
     //estos metodos importan y exportan a la BD cada vez que se requiera
     public void importarBD(){
-        this.cine.importarPeliculas();
-        this.cine.importarSalas();
+        controlador.Cine.importarPeliculas();
+        controlador.Cine.importarSalas();
     }
     public void exportarBD(){
-        this.cine.exportarBD();
-        this.cine.exportarSalasBD();
+        controlador.Cine.exportarBD();
+        controlador.Cine.exportarSalasBD();
     }
     
     
     
 
-    public Cine getCine() {
-        return cine;
-    }
-
-    public void setCine(Cine cine) {
-        this.cine = cine;
-    }
     
     
     

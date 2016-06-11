@@ -67,8 +67,8 @@ public class Cine {
     }
 
     /*guarda todo el Arraylist pelis dentro de un fichero en el proyecto*/
-     public void exportarBD() {
-        Iterator it = this.peliculas.iterator();
+     public static void exportarBD() {
+        Iterator it = peliculas.iterator();
         PrintWriter pwf = null;
         try {
             pwf = new PrintWriter(new FileOutputStream("bd.txt"));
@@ -83,7 +83,7 @@ public class Cine {
     }
     
      /*Carga todas las peliculas desde el fichero hasta el ArrayList*/
-    public void importarPeliculas() {
+    public static void importarPeliculas() {
         Scanner scf;
         Pelicula peli=null;
         String[] datosPeli;
@@ -92,7 +92,7 @@ public class Cine {
             while(scf.hasNextLine()){
                 peli=new Pelicula();
                 peli.crearPeliculaBD(scf.nextLine());
-                this.peliculas.add(peli);
+                peliculas.add(peli);
             }
             scf.close();
         } catch (FileNotFoundException ex) {
@@ -102,8 +102,8 @@ public class Cine {
         
     }
     /*guarda todo el Arraylist salas dentro de un fichero en el proyecto*/
-     public void exportarSalasBD() {
-        Iterator it = this.salas.iterator();
+     public static void exportarSalasBD() {
+        Iterator it = salas.iterator();
         PrintWriter pwf = null;
         try {
             pwf = new PrintWriter(new FileOutputStream("bdSalas.txt"));
@@ -118,7 +118,7 @@ public class Cine {
     }
     
      /*Carga todas las salas desde el fichero hasta el ArrayList*/
-    public void importarSalas() {
+    public static void importarSalas() {
         Scanner scf;
         Sala sala=null;
         String[] datosSala;
@@ -127,7 +127,7 @@ public class Cine {
             while(scf.hasNextLine()){
                 sala=new Sala();
                 sala.crearSalaBD(scf.nextLine());
-                this.salas.add(sala);
+                salas.add(sala);
             }
             scf.close();
         } catch (FileNotFoundException ex) {

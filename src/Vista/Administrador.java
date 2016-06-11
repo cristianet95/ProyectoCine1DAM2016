@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import controlador.*;
+
 /**
  *
  * @author USUARIO
@@ -41,6 +43,10 @@ public class Administrador extends javax.swing.JFrame {
         crearSesion = new javax.swing.JCheckBoxMenuItem();
         modificarSesion = new javax.swing.JCheckBoxMenuItem();
         eliminarSesion = new javax.swing.JCheckBoxMenuItem();
+        bd = new javax.swing.JMenu();
+        importar = new javax.swing.JCheckBoxMenuItem();
+        exportar = new javax.swing.JCheckBoxMenuItem();
+        importar1V = new javax.swing.JCheckBoxMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -137,6 +143,37 @@ public class Administrador extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        bd.setText("BD");
+
+        importar.setSelected(true);
+        importar.setText("Importar");
+        importar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importarActionPerformed(evt);
+            }
+        });
+        bd.add(importar);
+
+        exportar.setSelected(true);
+        exportar.setText("Exportar");
+        exportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportarActionPerformed(evt);
+            }
+        });
+        bd.add(exportar);
+
+        importar1V.setSelected(true);
+        importar1V.setText("Importar Primera Vez");
+        importar1V.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importar1VActionPerformed(evt);
+            }
+        });
+        bd.add(importar1V);
+
+        jMenuBar1.add(bd);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,6 +235,21 @@ public class Administrador extends javax.swing.JFrame {
         alt_modificarSesion.setVisible(true);
     }//GEN-LAST:event_modificarSesionActionPerformed
 
+    private void importarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarActionPerformed
+        GestionFicheros gf=new GestionFicheros();
+        gf.importarBD();
+    }//GEN-LAST:event_importarActionPerformed
+
+    private void importar1VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importar1VActionPerformed
+        GestionFicheros gf=new GestionFicheros();
+        gf.importarBDInicial();
+    }//GEN-LAST:event_importar1VActionPerformed
+
+    private void exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarActionPerformed
+        GestionFicheros gf=new GestionFicheros();
+        gf.exportarBD();
+    }//GEN-LAST:event_exportarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,11 +286,15 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu bd;
     private javax.swing.JCheckBoxMenuItem crearSala;
     private javax.swing.JCheckBoxMenuItem crearSesion;
     private javax.swing.JCheckBoxMenuItem eliminarPelicula;
     private javax.swing.JCheckBoxMenuItem eliminarSala;
     private javax.swing.JCheckBoxMenuItem eliminarSesion;
+    private javax.swing.JCheckBoxMenuItem exportar;
+    private javax.swing.JCheckBoxMenuItem importar;
+    private javax.swing.JCheckBoxMenuItem importar1V;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
