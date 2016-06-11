@@ -24,7 +24,7 @@ public class EliminarSesion extends javax.swing.JFrame {
     
     private void cargarComboSesiones(){
         this.nombreEliminarSesion.removeAllItems();
-        ArrayList<Sesion> sesiones = modelo.Pelicula.getSesiones();
+        /*ArrayList<Sesion> sesiones = modelo.Pelicula.getSesiones();
         
         if (sesiones == null) {
             this.nombreEliminarSesion.addItem("");
@@ -32,7 +32,7 @@ public class EliminarSesion extends javax.swing.JFrame {
             for (int i = 0; i < sesiones.size(); i++) {
                 this.nombreEliminarSesion.addItem(sesiones.get(i).getNombre());
             }
-        }
+        }*/
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +56,11 @@ public class EliminarSesion extends javax.swing.JFrame {
 
         eliminarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarSesion.setText("Eliminar");
+        eliminarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarSesionActionPerformed(evt);
+            }
+        });
 
         nombreEliminarSesion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -93,6 +98,10 @@ public class EliminarSesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void eliminarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarSesionActionPerformed
 
     /**
      * @param args the command line arguments

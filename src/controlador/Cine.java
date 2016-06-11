@@ -141,8 +141,8 @@ public class Cine {
         return peliculas;
     }
 
-    public void setPeliculas(ArrayList<Pelicula> peliculas) {
-        this.peliculas = peliculas;
+    public static void setPeliculas(ArrayList<Pelicula> peliculasL) {
+        peliculas = peliculasL;
     }
     
     public String getNombre() {

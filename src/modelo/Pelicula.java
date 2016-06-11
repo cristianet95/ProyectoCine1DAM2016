@@ -24,8 +24,7 @@ public class Pelicula {
     private String argumento;
     private String genero;
     private String clasificacion;
-    static ArrayList<Sesion> sesiones;
-    File fichero = null;
+    public ArrayList<Sesion> sesiones;
     Pelicula activa = null;
 
     public Pelicula() {
@@ -94,13 +93,13 @@ public class Pelicula {
         this.genero = datosPeli[6];
         this.clasificacion = datosPeli[7];
         for (int i = 8; i < datosPeli.length; i++) {
-            sesiones.add(sesion.crearSesionBD(datosPeli[i]));
+            this.sesiones.add(sesion.crearSesionBD(datosPeli[i]));
         }
         return this;
     }
 
-    public static void anadirSesion(Sesion sesion) {
-        sesiones.add(sesion);
+    public void anadirSesion(Sesion sesion) {
+        this.sesiones.add(sesion);
     }
 
     public void eliminarSesion(String nombre, Calendar fecha) {
@@ -112,7 +111,7 @@ public class Pelicula {
     }
 
     public ArrayList<Sesion> getListaSesion() {
-        return sesiones;
+        return this.sesiones;
     }
 
     public void setListaSesion(ArrayList<Sesion> sesiones) {
@@ -183,12 +182,12 @@ public class Pelicula {
         this.clasificacion = clasificacion;
     }
 
-    public static ArrayList<Sesion> getSesiones() {
+    public ArrayList<Sesion> getSesiones() {
         return sesiones;
     }
 
-    public static void setSesiones(ArrayList<Sesion> sesiones) {
-        Pelicula.sesiones = sesiones;
+    public void setSesiones(ArrayList<Sesion> sesiones) {
+        this.sesiones = sesiones;
     }
     
 }

@@ -146,7 +146,7 @@ public class CrearSesion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
             } else {
                 sesion = new Sesion(nombre, fecha, precio);
-                modelo.Pelicula.anadirSesion(sesion);
+                /*modelo.Pelicula.anadirSesion(sesion);*/
                 JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
             }
         }
