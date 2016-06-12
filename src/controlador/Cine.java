@@ -71,7 +71,7 @@ public class Cine {
         Iterator it = peliculas.iterator();
         PrintWriter pwf = null;
         try {
-            pwf = new PrintWriter(new FileOutputStream("bd.txt"));
+            pwf = new PrintWriter(new File("bd.txt"));
             while (it.hasNext()) {
                 pwf.println(it.next().toString());
             }
@@ -106,7 +106,7 @@ public class Cine {
         Iterator it = salas.iterator();
         PrintWriter pwf = null;
         try {
-            pwf = new PrintWriter(new FileOutputStream("bdSalas.txt"));
+            pwf = new PrintWriter(new File("bdSalas.txt"));
             while (it.hasNext()) {
                 pwf.println(it.next().toString());
             }

@@ -54,6 +54,11 @@ public class EliminarPelicula extends javax.swing.JFrame {
         jLabel1.setText("Eliminar Pelicula");
 
         NombreEliminarPelicula.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        NombreEliminarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreEliminarPeliculaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre Pelicula");
@@ -111,6 +116,10 @@ public class EliminarPelicula extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_botonEliminarPeliculaActionPerformed
+
+    private void NombreEliminarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreEliminarPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreEliminarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments

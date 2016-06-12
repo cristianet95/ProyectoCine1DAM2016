@@ -71,8 +71,6 @@ public class GestionFicheros {
         controlador.Cine.exportarBD();
         controlador.Cine.exportarSalasBD();
         
-        controlador.Cine.importarPeliculas();
-        controlador.Cine.importarSalas();
     }
     
     //estos metodos importan y exportan a la BD cada vez que se requiera
@@ -82,7 +80,7 @@ public class GestionFicheros {
     }
     public void exportarBD(){
         controlador.Cine.exportarBD();
-        controlador.Cine.exportarSalasBD();
+       controlador.Cine.exportarSalasBD();
     }
     
     

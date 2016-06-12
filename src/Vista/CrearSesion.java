@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import modelo.Pelicula;
@@ -22,6 +23,13 @@ public class CrearSesion extends javax.swing.JFrame {
      */
     public CrearSesion() {
         initComponents();
+        comboPeliculas.removeAllItems();
+        cargarComboPeliculas();
+    }
+    public void cargarComboPeliculas(){
+        for(Pelicula p : controlador.Cine.peliculas){
+            comboPeliculas.addItem(p.getTitutlo());
+        }
     }
 
     /**
@@ -43,6 +51,9 @@ public class CrearSesion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         campoPrecio = new javax.swing.JTextField();
         crearSesion = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        comboPeliculas = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Crear Sesion");
@@ -57,7 +68,7 @@ public class CrearSesion extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Dia y Hora");
+        jLabel3.setText("Dia");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Sala");
@@ -73,30 +84,46 @@ public class CrearSesion extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("mm-dd-yyyy");
+
+        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPeliculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPeliculasActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Pelicula");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(crearSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel5))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(campoSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                .addComponent(campoFecha, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(campoSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(campoFecha, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboPeliculas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(94, 94, 94))
+                    .addComponent(crearSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +137,8 @@ public class CrearSesion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -119,42 +147,59 @@ public class CrearSesion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(crearSesion)
-                .addGap(61, 61, 61))
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearSesionActionPerformed
-        Sesion sesion;
-        String nombre=campoPrecio.getText();
-        String[] datosFecha=campoFecha.getText().split("-");
-        int mes=Integer.parseInt(datosFecha[1]);
-        int dia=Integer.parseInt(datosFecha[2]);
-        int año=Integer.parseInt(datosFecha[3]);
-        Calendar fecha=null;
-        fecha.set(año,mes,dia);
-        
-        Sala sala=controlador.Cine.buscarSala(Integer.parseInt(campoSala.getText()));
-        if (sala==null) {
-            JOptionPane.showMessageDialog(this, "La sala no existe");
+        Sesion sesion=null;
+        String nombre=campoNombre.getText();
+        String nombrePeli=comboPeliculas.getSelectedItem().toString();//nombre de peli seleccionada
+        Pelicula pelicula=controlador.Cine.buscarPeli(nombrePeli);//pelicula seleccionada
+        //primero que nada validamos campos vacios para evitar errores
+        if(nombre.equals("") || campoFecha.getText().equals("") || campoSala.getText().equals("") || campoPrecio.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
         }else{
-            double precio = Double.parseDouble(campoPrecio.getText());
-            if (nombre.equals("") || campoFecha.getText().equals("") || campoSala.getText().equals("") || campoPrecio.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ningun campo puede quedar vacio");
-            } else {
-                sesion = new Sesion(nombre, fecha, precio);
-                /*modelo.Pelicula.anadirSesion(sesion);*/
-                JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+            String[] datosFecha=campoFecha.getText().split("-");
+            if(validarFecha(datosFecha)){ //segundo validamos la fecha
+                int mes=Integer.parseInt(datosFecha[0]);
+                int dia=Integer.parseInt(datosFecha[1]);
+                int año=Integer.parseInt(datosFecha[2]);
+                Calendar fecha=Calendar.getInstance();
+                fecha.set(año,mes,dia);
+                //validamos si la sala existe
+                Sala sala1=controlador.Cine.buscarSala(Integer.parseInt(campoSala.getText()));
+                if ( sala1 == null ) {
+                    JOptionPane.showMessageDialog(this, "La sala no existe");
+                }else{
+                    double precio = Double.parseDouble(campoPrecio.getText());
+                    sesion = new Sesion(nombre, fecha, precio);
+                    sesion.sala=sala1;
+                    pelicula.anadirSesion(sesion);//añadimos la sesion a la pelicula seleccinada
+                    JOptionPane.showMessageDialog(this, "La sesion se ha añadido correctamente");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "La fecha no es correcta");
             }
         }
+       
     }//GEN-LAST:event_crearSesionActionPerformed
 
     private void campoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNombreActionPerformed
+
+    private void comboPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPeliculasActionPerformed
+        
+    }//GEN-LAST:event_comboPeliculasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,17 +235,35 @@ public class CrearSesion extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static boolean validarFecha(String[] f){
+        int m,d,y;
+        if( f.length != 3 )
+            return false;
+        else{
+            m=Integer.parseInt(f[0]);
+            d=Integer.parseInt(f[1]);
+            y=Integer.parseInt(f[2]);
+            if(m<=12 && m>0 && d>0 && d<=31 && y>2015 && y<2060){
+                return true;
+            }else
+                return false;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecio;
     private javax.swing.JTextField campoSala;
+    private javax.swing.JComboBox<String> comboPeliculas;
     private javax.swing.JButton crearSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
