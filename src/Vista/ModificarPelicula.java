@@ -6,6 +6,7 @@
 package Vista;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Pelicula;
 
 /**
@@ -27,7 +28,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
     private void cargarComboClientes() {
         ArrayList<Pelicula> peliculas = controlador.Cine.getPeliculas();
         
-        if (peliculas == null) {
+        if (peliculas.isEmpty()) {
             this.nombreModificarPelicula.addItem("");
         } else {
             for (int i = 0; i < peliculas.size(); i++) {
@@ -47,6 +48,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
             this.interpretes.setText(p.getInterprete());
             this.genero.setText(p.getGenero());
             this.clasificacion.setText(p.getClasificacion());
+            this.argumento.setText(p.getArgumento());
         }else{
             this.nombrePelicula.setText("");
             this.nacionalidad.setText("");
@@ -55,6 +57,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
             this.interpretes.setText("");
             this.genero.setText("");
             this.clasificacion.setText("");
+            this.argumento.setText("");
         }
     }
     /**
@@ -85,7 +88,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         argumento = new javax.swing.JTextArea();
-        confirmarModificarPelicula = new javax.swing.JButton();
+        buttonModificarPelicula = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         nombreModificarPelicula = new javax.swing.JComboBox();
 
@@ -124,11 +127,11 @@ public class ModificarPelicula extends javax.swing.JFrame {
         argumento.setRows(5);
         jScrollPane1.setViewportView(argumento);
 
-        confirmarModificarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        confirmarModificarPelicula.setText("Confirmar");
-        confirmarModificarPelicula.addActionListener(new java.awt.event.ActionListener() {
+        buttonModificarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonModificarPelicula.setText("Modificar");
+        buttonModificarPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarModificarPeliculaActionPerformed(evt);
+                buttonModificarPeliculaActionPerformed(evt);
             }
         });
 
@@ -172,7 +175,7 @@ public class ModificarPelicula extends javax.swing.JFrame {
                             .addComponent(nombreModificarPelicula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(confirmarModificarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonModificarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,17 +220,35 @@ public class ModificarPelicula extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(confirmarModificarPelicula)
+                .addComponent(buttonModificarPelicula)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmarModificarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarPeliculaActionPerformed
-
+    private void buttonModificarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModificarPeliculaActionPerformed
+       Pelicula p= controlador.Cine.buscarPeli(this.nombreModificarPelicula.getSelectedItem().toString());
+       String nomPeli, nacionalidad, director, interpretes, argumento, genero, clasificacion;
+       int minutos;
+       
+        if(p == null){
+           JOptionPane.showMessageDialog(this, "No has elegido ninguna pelicula");
+       }else{
+          nomPeli= this.nombrePelicula.getText();
+          nacionalidad= this.nacionalidad.getText();
+          director= this.director.getText();
+          interpretes= this.interpretes.getText();
+          argumento= this.argumento.getText();
+          genero= this.genero.getText();
+          clasificacion= this.clasificacion.getText();
+          minutos= Integer.parseInt(this.minutos.getText());
+          
+          p.modificarPeli(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
+          JOptionPane.showMessageDialog(this, "Se ha modificado la pelicula correctamente");
+       }
         
-    }//GEN-LAST:event_confirmarModificarPeliculaActionPerformed
+    }//GEN-LAST:event_buttonModificarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,8 +287,8 @@ public class ModificarPelicula extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea argumento;
+    private javax.swing.JButton buttonModificarPelicula;
     private javax.swing.JTextField clasificacion;
-    private javax.swing.JButton confirmarModificarPelicula;
     private javax.swing.JTextField director;
     private javax.swing.JTextField genero;
     private javax.swing.JTextField interpretes;
