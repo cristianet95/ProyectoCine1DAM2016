@@ -137,6 +137,7 @@ public class CrearSala extends javax.swing.JFrame {
         Sala s;
         int numero= 0, filas= 0, tamFilas= 0;
         boolean sala3d= validarBoton3d();
+        Sala sala=null;
 
         numero= Integer.parseInt(this.numeroSala.getText());
         filas= Integer.parseInt(this.filas.getText());
@@ -145,7 +146,12 @@ public class CrearSala extends javax.swing.JFrame {
         if(numero == 0 || filas == 0 || tamFilas == 0){
             JOptionPane.showMessageDialog(this, "Deben tener un valor mayor que 0");
         }else{
-            s= new Sala(numero, filas, tamFilas, sala3d);
+            sala=controlador.Cine.buscarSala(numero);
+            if( sala == null ){
+                s= new Sala(numero, filas, tamFilas, sala3d);
+                controlador.Cine.salas.add(s);
+            }else
+                JOptionPane.showMessageDialog(this, "Este numero de sala ya existe");
         }
     }//GEN-LAST:event_crearSalaActionPerformed
 

@@ -175,7 +175,7 @@ public class CrearPelicula extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void añadirCrearPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirCrearPeliculaActionPerformed
-        Pelicula p;
+        Pelicula p=null;
         String nomPeli, nacionalidad, director, interpretes, argumento, genero, clasificacion;
         int minutos = 0;
 
@@ -194,10 +194,13 @@ public class CrearPelicula extends javax.swing.JFrame {
             if (minutos == 0) {
                  JOptionPane.showMessageDialog(this, "La pelicula debe durar  mas de 0 minutos");   
             } else {
-
-                p = new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
-                controlador.Cine.añadirPeli(p);
-                JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+                p=controlador.Cine.buscarPeli(nomPeli);//comprueba si el titulo de la pelicula ya existe
+                if( p == null ){
+                    p = new Pelicula(nomPeli, nacionalidad, minutos, director, interpretes, argumento, genero, clasificacion);
+                    controlador.Cine.añadirPeli(p);
+                    JOptionPane.showMessageDialog(this, "Se ha añadido la pelicula correctamente");
+                }else
+                    JOptionPane.showMessageDialog(this, "Esta pelicula ya existe");
             }
         }
     }//GEN-LAST:event_añadirCrearPeliculaActionPerformed

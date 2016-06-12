@@ -17,7 +17,7 @@ public class Sesion {
     private String nombre;
     private Calendar fecha;
     private double precio;
-    ArrayList<Asiento> asientos;
+    public ArrayList<Asiento> asientos;
     public Sala sala = null;
     
     public Sesion(){
