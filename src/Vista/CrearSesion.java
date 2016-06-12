@@ -27,8 +27,12 @@ public class CrearSesion extends javax.swing.JFrame {
         cargarComboPeliculas();
     }
     public void cargarComboPeliculas(){
-        for(Pelicula p : controlador.Cine.peliculas){
-            comboPeliculas.addItem(p.getTitutlo());
+        if (controlador.Cine.peliculas == null) {
+            comboPeliculas.addItem("");
+        }else{
+            for(Pelicula p : controlador.Cine.peliculas){
+                comboPeliculas.addItem(p.getTitutlo());
+            }
         }
     }
 

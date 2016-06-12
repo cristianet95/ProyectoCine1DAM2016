@@ -40,6 +40,11 @@ public class EliminarSala extends javax.swing.JFrame {
 
         eliminarSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarSala.setText("Eliminar");
+        eliminarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarSalaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,6 +80,10 @@ public class EliminarSala extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void eliminarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarSalaActionPerformed
 
     /**
      * @param args the command line arguments

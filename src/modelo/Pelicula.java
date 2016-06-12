@@ -109,6 +109,15 @@ public class Pelicula {
             }
         }
     }
+    
+    public Sesion buscarSesion(String sesion) {
+        for (int i = 0; i < this.sesiones.size() ; i++) {
+            if(this.sesiones.get(i).getNombre().equals(sesion)){
+                return this.sesiones.get(i);
+            }
+        }
+        return null;
+    }
 
     public ArrayList<Sesion> getListaSesion() {
         return this.sesiones;
