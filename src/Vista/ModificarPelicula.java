@@ -22,7 +22,6 @@ public class ModificarPelicula extends javax.swing.JFrame {
         initComponents();
         this.nombreModificarPelicula.removeAllItems();
         cargarComboClientes();
-        cargarInfoPelicula();
     }
     
     private void cargarComboClientes() {
@@ -139,6 +138,11 @@ public class ModificarPelicula extends javax.swing.JFrame {
         jLabel10.setText("Seleccionar Pelicula");
 
         nombreModificarPelicula.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nombreModificarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreModificarPeliculaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +253,12 @@ public class ModificarPelicula extends javax.swing.JFrame {
        }
         
     }//GEN-LAST:event_buttonModificarPeliculaActionPerformed
+
+    private void nombreModificarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreModificarPeliculaActionPerformed
+       if(this.nombreModificarPelicula.getSelectedIndex() != -1){
+             cargarInfoPelicula();
+        }
+    }//GEN-LAST:event_nombreModificarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments

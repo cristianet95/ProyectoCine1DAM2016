@@ -114,7 +114,6 @@ public class EliminarPelicula extends javax.swing.JFrame {
              cargarComboPeliculas();
              JOptionPane.showMessageDialog(this, "La pelicula se ha eliminado correctamente");
         }
-       
     }//GEN-LAST:event_botonEliminarPeliculaActionPerformed
 
     private void NombreEliminarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreEliminarPeliculaActionPerformed
