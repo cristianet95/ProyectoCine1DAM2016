@@ -66,6 +66,7 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
         }
         this.panelAsientos.updateUI();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,6 +112,11 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
 
         botonReservar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botonReservar.setText("Reservar");
+        botonReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReservarActionPerformed(evt);
+            }
+        });
 
         minutos.setEditable(false);
 
@@ -212,6 +218,28 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
             
         }
     }//GEN-LAST:event_generarAsientosActionPerformed
+
+    private void botonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActionPerformed
+        int cont=0, fila, columna;
+        JButton jb=null;
+        String nombreSesion=this.sesiones.getSelectedItem().toString();
+        Sesion sesion=this.pelicula.buscarSesion(nombreSesion);
+        if(sesion!=null){
+            for (int i = 0; i < this.b.length; i++) {
+                for (int j = 0; j < this.b[1].length; j++) {
+                    jb=(JButton)this.panelAsientos.getComponent(cont);
+                    if(jb.isSelected()){
+                        sesion.crearReserva(i, j);
+                    }
+                    cont++;
+                }
+            }
+        }else
+            JOptionPane.showMessageDialog(this, "No hay sesiones");
+            
+        
+        
+    }//GEN-LAST:event_botonReservarActionPerformed
 
     /**
      * @param args the command line arguments
