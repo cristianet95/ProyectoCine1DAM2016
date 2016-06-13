@@ -82,7 +82,6 @@ public class Pelicula {
         return cadena;
     }
     public Pelicula crearPeliculaBD(String info){//metodo que usa el metodo de cine de guardar en un fichero
-        Sesion sesion=new Sesion();
         String[] datosPeli=info.split("_");//0 es titulo, 1 es minutos,..del 8 al final son sesiones
         this.titulo = datosPeli[0];
         this.nacionalidad = datosPeli[1];
@@ -93,6 +92,7 @@ public class Pelicula {
         this.genero = datosPeli[6];
         this.clasificacion = datosPeli[7];
         for (int i = 8; i < datosPeli.length; i++) {
+            Sesion sesion=new Sesion();
             this.sesiones.add(sesion.crearSesionBD(datosPeli[i]));
         }
         return this;
@@ -104,7 +104,7 @@ public class Pelicula {
 
     public void eliminarSesion(String nombre, Calendar fecha) {
         for (Sesion s : this.sesiones) {
-            if (s.getNombre().equals(nombre) && s.getFecha().compareTo(fecha) == 0) {
+            if (s.getNombre().equals(nombre) && s.getFecha().get(Calendar.YEAR) == fecha.get(Calendar.YEAR) && s.getFecha().get(Calendar.MONTH) == fecha.get(Calendar.MONTH) && s.getFecha().get(Calendar.DATE) == fecha.get(Calendar.DATE)) {
                 this.sesiones.remove(s);
             }
         }

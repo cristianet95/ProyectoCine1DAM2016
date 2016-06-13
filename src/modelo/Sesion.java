@@ -44,7 +44,7 @@ public class Sesion {
         int mes=Integer.parseInt(datosSesion[1]);
         int dia=Integer.parseInt(datosSesion[2]);
         int año=Integer.parseInt(datosSesion[3]);
-        this.fecha.set(año, mes, dia);
+        this.fecha.set(año, mes, dia, 0, 0, 0);
         this.precio = Double.parseDouble(datosSesion[4]);
         this.sala=new Sala();
         this.sala.setNumero(Integer.parseInt(datosSesion[5]));

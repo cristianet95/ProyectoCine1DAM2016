@@ -144,9 +144,12 @@ public class EliminarSesion extends javax.swing.JFrame {
     private void eliminarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSesionActionPerformed
         Pelicula peli=controlador.Cine.buscarPeli(comboPeliculas.getSelectedItem().toString());
         Sesion sesion=peli.buscarSesion(nombreEliminarSesion.getSelectedItem().toString());
+        
         if(sesion != null){
             peli.eliminarSesion(sesion.getNombre(), sesion.getFecha());
             JOptionPane.showMessageDialog(this, "La sesion se ha eliminado correctamente");
+            if( comboPeliculas.getSelectedItem() != null )
+            cargarComboSesiones();
         }
     }//GEN-LAST:event_eliminarSesionActionPerformed
 
