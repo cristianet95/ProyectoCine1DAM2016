@@ -62,7 +62,7 @@ public class EliminarSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         eliminarSesion = new javax.swing.JButton();
         nombreEliminarSesion = new javax.swing.JComboBox();
-        comboPeliculas = new javax.swing.JComboBox<>();
+        comboPeliculas = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -80,8 +80,13 @@ public class EliminarSesion extends javax.swing.JFrame {
         });
 
         nombreEliminarSesion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nombreEliminarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreEliminarSesionActionPerformed(evt);
+            }
+        });
 
-        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPeliculasActionPerformed(evt);
@@ -150,6 +155,9 @@ public class EliminarSesion extends javax.swing.JFrame {
             cargarComboSesiones();
     }//GEN-LAST:event_comboPeliculasActionPerformed
 
+    private void nombreEliminarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreEliminarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreEliminarSesionActionPerformed
     /**
      * @param args the command line arguments
      */
