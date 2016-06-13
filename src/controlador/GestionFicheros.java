@@ -22,11 +22,11 @@ public class GestionFicheros {
     /*Carga la bd con peliculas y sesiones solo se debe si quieres cargar tu bd con algo para pruebas*/
     
     public void importarBDInicial(){
-        Sala sala1 = new Sala(1, 15, 20, true);
-        Sala sala2 = new Sala(2, 20, 30, false);
-        Sala sala3 = new Sala(3, 40, 25, false);
-        Sala sala4 = new Sala(4, 20, 40, true);
-        Sala sala5 = new Sala(5, 10, 40, true);
+        Sala sala1 = new Sala(1, 10, 10, true);
+        Sala sala2 = new Sala(2, 12, 12, false);
+        Sala sala3 = new Sala(3, 15, 15, false);
+        Sala sala4 = new Sala(4, 8, 10, true);
+        Sala sala5 = new Sala(5, 20, 20, true);
         Calendar fecha1=Calendar.getInstance();
         fecha1.set(2016, 7, 15, 0, 0, 0);
         Sesion sesion1 = new Sesion("m", fecha1, 9);
