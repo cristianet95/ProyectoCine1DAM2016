@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import modelo.Pelicula;
+
 /**
  *
  * @author USUARIO
@@ -14,8 +16,15 @@ public class CrearReserva extends javax.swing.JFrame {
     /**
      * Creates new form CrearReserva
      */
-    public CrearReserva() {
+    Pelicula pelicula=null;
+    
+    public CrearReserva(Pelicula peli) {
         initComponents();
+        
+    }
+    
+    public void visualizar(Pelicula peli){
+        this.pelicula=peli;
     }
 
     /**
@@ -138,7 +147,7 @@ public class CrearReserva extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearReserva().setVisible(true);
+               
             }
         });
     }
