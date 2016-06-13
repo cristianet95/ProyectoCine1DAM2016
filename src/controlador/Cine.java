@@ -38,6 +38,7 @@ public class Cine {
         }
         return null;
     }
+
     public static Sala buscarSala(int numero) {
         for (int i = 0; i < salas.size(); i++) {
             if(salas.get(i).getNumero()==numero){
