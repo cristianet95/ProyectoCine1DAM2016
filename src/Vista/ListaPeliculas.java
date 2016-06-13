@@ -129,7 +129,9 @@ public class ListaPeliculas extends javax.swing.JFrame {
         if (posicion != -1) {
             String nombre = (String) this.dtm.getValueAt(posicion, 0);
             Pelicula p = controlador.Cine.buscarPeli(nombre);
-            System.out.println(p.getTitutlo());
+            Vista.CrearReserva cr= new Vista.CrearReserva();
+            cr.visualizar(p);
+            cr.setVisible(true);
         }
     }//GEN-LAST:event_botonReservarActionPerformed
 
