@@ -20,7 +20,7 @@ import modelo.*;
  *
  * @author USUARIO
  */
-public class CrearReserva extends javax.swing.JFrame implements ActionListener {
+public class EliminarReserva extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form CrearReserva
@@ -30,20 +30,23 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
     JButton[][] b;
     int numClicks = 0;
 
-    public CrearReserva() {
+    public EliminarReserva() {
         initComponents();
+        comboPeliculas.removeAllItems();
+        cargarComboPeliculas();
 
     }
+     public void cargarComboPeliculas(){
+        if (controlador.Cine.peliculas == null) {
+            comboPeliculas.addItem("");
+        }else{
+            for(Pelicula p : controlador.Cine.peliculas){
+                comboPeliculas.addItem(p.getTitutlo());
+            }
+        }
+    }
+    
     //el metodo visualizar se llama desde la pantalla vista.listPeliculas
-    public void visualizar(Pelicula peli) {
-        this.pelicula = peli;
-        this.tituloPeli.setText(this.pelicula.getTitutlo());
-        this.minutos.setText(Integer.toString(this.pelicula.getMinutos()));
-        this.argumento.setText(this.pelicula.getArgumento());
-        cargarComboSesiones();
-
-    }
-
     private void cargarComboSesiones() {
         this.sesiones.removeAllItems();
 
@@ -85,10 +88,10 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         }
         this.panelAsientos.updateUI();
     }
-    public void deReservadosAOcupados(){
+    public void deOcupadosALibres(){
         for( Asiento a : this.sesionActiva.asientos ){
             if(a.getDispo().equals(Disponibilidad.RESERVADO))
-                a.setDispo(Disponibilidad.OCUPADO);
+                a.setDispo(Disponibilidad.LIBRE);
         }
     }
     
@@ -106,14 +109,9 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         sesiones = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        argumento = new javax.swing.JEditorPane();
         botonReservar = new javax.swing.JButton();
-        minutos = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        tituloPeli = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         panelAsientos = new javax.swing.JPanel();
+        comboPeliculas = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Reservar");
@@ -126,69 +124,57 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Pelicula");
+        jLabel2.setText("Peliculas");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Sesion");
 
-        argumento.setEditable(false);
-        jScrollPane1.setViewportView(argumento);
-
         botonReservar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botonReservar.setText("Reservar");
+        botonReservar.setText("Anular Reservas");
         botonReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonReservarActionPerformed(evt);
             }
         });
 
-        minutos.setEditable(false);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Minutos");
-
-        tituloPeli.setEditable(false);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Argumento");
-
         panelAsientos.setLayout(new java.awt.GridLayout(1, 0));
+
+        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPeliculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPeliculasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(193, 193, 193)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(32, 32, 32)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(comboPeliculas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(177, 177, 177))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                                    .addComponent(botonReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(tituloPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonReservar)))))
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                        .addGap(52, 52, 52)
+                        .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,22 +184,16 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tituloPeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(botonReservar)))
-                    .addComponent(jLabel5))
+                    .addComponent(comboPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonReservar))
                 .addGap(18, 18, 18)
                 .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,12 +211,19 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_sesionesActionPerformed
 
     private void botonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActionPerformed
-        deReservadosAOcupados();
-        JOptionPane.showMessageDialog(this, "Asientos reservados ");
+        deOcupadosALibres();
+        JOptionPane.showMessageDialog(this, "Reservas Eliminadas ");
         cargarAsientos();
 
 
     }//GEN-LAST:event_botonReservarActionPerformed
+
+    private void comboPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPeliculasActionPerformed
+        if(this.comboPeliculas.getSelectedIndex() != -1){
+            this.pelicula=controlador.Cine.buscarPeli(this.comboPeliculas.getSelectedItem().toString());
+            cargarComboSesiones();
+        }
+    }//GEN-LAST:event_comboPeliculasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,14 +242,15 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -274,18 +262,13 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane argumento;
     private javax.swing.JButton botonReservar;
+    private javax.swing.JComboBox<String> comboPeliculas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField minutos;
     private javax.swing.JPanel panelAsientos;
     private javax.swing.JComboBox sesiones;
-    private javax.swing.JTextField tituloPeli;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -298,7 +281,7 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         columna--;
         //reservamos
         try {
-            this.sesionActiva.crearReserva(fila, columna);
+            this.sesionActiva.eliminarReserva(fila, columna);
             b[fila][columna].setBackground(Color.ORANGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.toString());

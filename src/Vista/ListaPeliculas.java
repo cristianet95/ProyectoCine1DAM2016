@@ -132,6 +132,7 @@ public class ListaPeliculas extends javax.swing.JFrame {
             Vista.CrearReserva cr= new Vista.CrearReserva();
             cr.visualizar(p);
             cr.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_botonReservarActionPerformed
 

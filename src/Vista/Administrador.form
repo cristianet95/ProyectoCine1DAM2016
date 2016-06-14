@@ -141,7 +141,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="importar1V">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Importar Primera Vez"/>
+                <Property name="text" type="java.lang.String" value="Cargar Ejemplos (Fase Prueba)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importar1VActionPerformed"/>

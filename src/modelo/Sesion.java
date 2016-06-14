@@ -46,10 +46,16 @@ public class Sesion {
     @Override
     public String toString(){
         String cadena="";
-        cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero()+"-"+this.sala.getFilas()+"-"+this.sala.getTamFila()+"-"+this.sala.isSala3d();
+        cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero()+"-"+this.sala.getFilas()+"-"+this.sala.getTamFila()+"-"+this.sala.isSala3d()+"-";
+        for(Asiento a : this.asientos ){
+            if(a.getDispo().equals(Disponibilidad.LIBRE))
+                cadena+="l";
+            else
+                cadena+="o";
+        }
         return cadena;
     }
-    public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente para la base de datos
+    public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente para importar la base de datos
         String[] datosSesion=info.split("-");
         this.nombre = datosSesion[0];
         int mes=Integer.parseInt(datosSesion[1]);
@@ -65,6 +71,14 @@ public class Sesion {
         if(datosSesion[8].equals("true"))
             sala3d=true;
         this.sala.setSala3d(sala3d);
+        //ahora guardamos los asientos
+        cargarAsientos();
+        for(int i=0;i<this.asientos.size();i++){
+            if( datosSesion[9].charAt(i) == 'l' )
+                this.asientos.get(i).setDispo(Disponibilidad.LIBRE);
+            else
+                this.asientos.get(i).setDispo(Disponibilidad.OCUPADO);
+        }
         
         return this;
     }

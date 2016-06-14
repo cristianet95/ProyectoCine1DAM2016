@@ -103,11 +103,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
-              <Component id="crearReserva" min="-2" pref="406" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="157" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -132,6 +127,14 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="crearReserva" pref="406" max="32767" attributes="0"/>
+                  <Component id="eliminarReservas" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -154,7 +157,9 @@
               <Component id="informacion" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace pref="16" max="32767" attributes="0"/>
               <Component id="crearReserva" min="-2" pref="98" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="eliminarReservas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -211,6 +216,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="informacion">
+    </Component>
+    <Component class="javax.swing.JButton" name="eliminarReservas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar Reservas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarReservasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

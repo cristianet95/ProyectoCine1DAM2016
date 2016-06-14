@@ -62,6 +62,11 @@ public class GestionFicheros {
         controlador.Cine.añadirSala(sala3);
         controlador.Cine.añadirSala(sala4);
         controlador.Cine.añadirSala(sala5);
+        for (Pelicula p : controlador.Cine.peliculas) {
+            for(Sesion s : p.sesiones){
+                s.cargarAsientos();
+            }
+        }
         
         controlador.Cine.exportarBD();
         controlador.Cine.exportarSalasBD();
@@ -71,11 +76,6 @@ public class GestionFicheros {
     //estos metodos importan y exportan a la BD cada vez que se requiera
     public void importarBD(){
         controlador.Cine.importarPeliculas();
-        for (Pelicula p : controlador.Cine.peliculas) {
-            for(Sesion s : p.sesiones){
-                s.cargarAsientos();
-            }
-        }
         controlador.Cine.importarSalas();
     }
     public void exportarBD(){

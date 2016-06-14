@@ -47,6 +47,7 @@ public class Principal extends javax.swing.JFrame {
         confirmarAdministrador = new javax.swing.JButton();
         crearReserva = new javax.swing.JButton();
         informacion = new javax.swing.JLabel();
+        eliminarReservas = new javax.swing.JButton();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -99,14 +100,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        eliminarReservas.setText("Eliminar Reservas");
+        eliminarReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarReservasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
-                .addComponent(crearReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(157, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +129,12 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(crearReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(eliminarReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +154,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(crearReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(28, 28, 28)
+                .addComponent(eliminarReservas)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -163,6 +175,12 @@ public class Principal extends javax.swing.JFrame {
         Vista.ListaPeliculas alt_listaPeliculas= new Vista.ListaPeliculas();
         alt_listaPeliculas.setVisible(true);
     }//GEN-LAST:event_crearReservaActionPerformed
+
+    private void eliminarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarReservasActionPerformed
+        Vista.EliminarReserva alt_eliminarR= new Vista.EliminarReserva();
+        alt_eliminarR.setVisible(true);
+        
+    }//GEN-LAST:event_eliminarReservasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +222,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField clienteUsuario;
     private javax.swing.JButton confirmarAdministrador;
     private javax.swing.JButton crearReserva;
+    private javax.swing.JButton eliminarReservas;
     private javax.swing.JLabel informacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

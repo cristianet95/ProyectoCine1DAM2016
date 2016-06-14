@@ -164,7 +164,7 @@ public class Administrador extends javax.swing.JFrame {
         bd.add(exportar);
 
         importar1V.setSelected(true);
-        importar1V.setText("Importar Primera Vez");
+        importar1V.setText("Cargar Ejemplos (Fase Prueba)");
         importar1V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importar1VActionPerformed(evt);
