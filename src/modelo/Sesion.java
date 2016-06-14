@@ -49,7 +49,7 @@ public class Sesion {
         cadena+=this.nombre+"-"+this.fecha.get(Calendar.MONTH)+"-"+this.fecha.get(Calendar.DATE)+"-"+this.fecha.get(Calendar.YEAR)+"-"+this.precio+"-"+this.sala.getNumero()+"-"+this.sala.getFilas()+"-"+this.sala.getTamFila()+"-"+this.sala.isSala3d();
         return cadena;
     }
-    public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente
+    public Sesion crearSesionBD(String info){//este metodo lo usa Cine solamente para la base de datos
         String[] datosSesion=info.split("-");
         this.nombre = datosSesion[0];
         int mes=Integer.parseInt(datosSesion[1]);
@@ -91,33 +91,33 @@ public class Sesion {
         }
     }
 
-    public void crearReserva(int fila, int num) {
+    public void crearReserva(int fila, int num) throws Exception{
         if (buscarAsiento(fila, num) != null) {
             Asiento a = buscarAsiento(fila, num);
-            if (!confirmarReserva(a)) {
+            if (!estaOcupado(a)) {
                 a.setDispo(Disponibilidad.RESERVADO);
             } else {
-                System.out.println("El asiento no esta disponible");
+                throw new controlador.CineException("El asiento no esta disponible");
             }
         } else {
-            System.out.println("El asiento no existe");
+            throw new controlador.CineException("El asiento no existe");
         }
     }
 
-    public void eliminarReserva(int fila, int num) {
+    public void eliminarReserva(int fila, int num) throws Exception{
         if (buscarAsiento(fila, num) != null) {
             Asiento a = buscarAsiento(fila, num);
-            if (confirmarReserva(a)) {
+            if (estaOcupado(a)) {
                 a.setDispo(Disponibilidad.LIBRE);
             } else {
-                System.out.println("El asiento no esta reservado");
+                throw new controlador.CineException("El asiento no esta reservado");
             }
         } else {
-            System.out.println("El asiento no existe");
+            throw new controlador.CineException("El asiento no existe");
         }
     }
 
-    public boolean confirmarReserva(Asiento a) {
+    public boolean estaOcupado(Asiento a) {
         if (a.getDispo().equals(Disponibilidad.OCUPADO)) {
             return true;
         } else {

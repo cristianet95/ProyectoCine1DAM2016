@@ -5,14 +5,16 @@
  */
 package Vista;
 
+import controlador.CineException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
-import modelo.Disponibilidad;
-import modelo.Pelicula;
-import modelo.Sesion;
+import modelo.*;
 
 /**
  *
@@ -24,13 +26,15 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
      * Creates new form CrearReserva
      */
     Pelicula pelicula = null;
+    Sesion sesionActiva=null;
     JButton[][] b;
+    int numClicks = 0;
 
     public CrearReserva() {
         initComponents();
 
     }
-
+    //el metodo visualizar se llama desde la pantalla vista.listPeliculas
     public void visualizar(Pelicula peli) {
         this.pelicula = peli;
         this.tituloPeli.setText(this.pelicula.getTitutlo());
@@ -51,21 +55,26 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-
-    public void cargarAsientos(Sesion s) {
-        int f = s.sala.getFilas();
-        int tf = s.sala.getTamFila();
+    /*
+    *Este metodo recorre la matriz b y genera un boton por cada uno,
+    *le da un color segun su Disponibilidad y
+    *genera el listener y lo añade al panel correspondiente
+    */
+    public void cargarAsientos() {
+        int f = this.sesionActiva.sala.getFilas();
+        int tf = this.sesionActiva.sala.getTamFila();
+        int iAux,jAux;
         this.panelAsientos.removeAll();
         this.panelAsientos.setLayout(new java.awt.GridLayout(f, tf));
         this.b = new JButton[f][tf];
         int cont = 0;
         for (int i = 0; i < this.b.length; i++) {
             for (int j = 0; j < this.b[i].length; j++) {
-                
-                b[i][j] = new JButton(i+ "-" + j);
-                if (s.asientos.get(cont).getDispo().equals(Disponibilidad.LIBRE)) 
+                iAux=i+1;
+                jAux=j+1;
+                b[i][j] = new JButton(iAux+ "-" + jAux);
+                if (this.sesionActiva.asientos.get(cont).getDispo().equals(Disponibilidad.LIBRE)) 
                     b[i][j].setBackground(Color.GREEN);
-                
                 else
                     b[i][j].setBackground(Color.RED);
                 
@@ -76,6 +85,13 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         }
         this.panelAsientos.updateUI();
     }
+    public void deReservadosAOcupados(){
+        for( Asiento a : this.sesionActiva.asientos ){
+            if(a.getDispo().equals(Disponibilidad.RESERVADO))
+                a.setDispo(Disponibilidad.OCUPADO);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,7 +114,6 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         tituloPeli = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         panelAsientos = new javax.swing.JPanel();
-        generarAsientos = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Reservar");
@@ -137,52 +152,43 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Argumento");
 
-        panelAsientos.setLayout(new java.awt.GridLayout());
-
-        generarAsientos.setText("Generar Asientos");
-        generarAsientos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generarAsientosActionPerformed(evt);
-            }
-        });
+        panelAsientos.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(tituloPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(193, 193, 193)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(tituloPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(66, 66, 66)
-                                        .addComponent(generarAsientos)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botonReservar)))))
-                        .addGap(0, 141, Short.MAX_VALUE))
-                    .addComponent(panelAsientos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonReservar)))))
+                .addContainerGap(153, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,55 +204,35 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sesiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(generarAsientos)
                             .addComponent(botonReservar)))
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //al seleccionar la sesion se generan los asientos
     private void sesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionesActionPerformed
-
-    }//GEN-LAST:event_sesionesActionPerformed
-
-    private void generarAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarAsientosActionPerformed
         Sesion sesion = null;
         if (this.sesiones.getSelectedIndex() != -1) {
-            sesion = this.pelicula.buscarSesion(this.sesiones.getSelectedItem().toString());
-            if (sesion != null) {
-                cargarAsientos(sesion);
+            this.sesionActiva = this.pelicula.buscarSesion(this.sesiones.getSelectedItem().toString());
+            if (this.sesionActiva != null) {
+                cargarAsientos();
             }
 
         }
-    }//GEN-LAST:event_generarAsientosActionPerformed
+    }//GEN-LAST:event_sesionesActionPerformed
 
     private void botonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActionPerformed
-        int cont = 0, fila, columna;
-        JButton jb = null;
-        String nombreSesion = this.sesiones.getSelectedItem().toString();
-        Sesion sesion = this.pelicula.buscarSesion(nombreSesion);
-        if (sesion != null) {
-            for (int i = 0; i < this.b.length; i++) {
-                for (int j = 0; j < this.b[1].length; j++) {
-                    jb = (JButton) this.panelAsientos.getComponent(cont);
-                    if (jb.isSelected()) {
-                        sesion.crearReserva(i, j);
-                    }
-                    cont++;
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay sesiones");
-        }
+        deReservadosAOcupados();
+        cargarAsientos();
 
 
     }//GEN-LAST:event_botonReservarActionPerformed
@@ -289,7 +275,6 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane argumento;
     private javax.swing.JButton botonReservar;
-    private javax.swing.JButton generarAsientos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -304,6 +289,22 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        numClicks++;
+        String[] textoBotonPulsado=e.getActionCommand().split("-");//necesitamos el texto del boton pulsado para poder trabajar con ese asiento
+        int fila=Integer.parseInt(textoBotonPulsado[0]);
+        int columna=Integer.parseInt(textoBotonPulsado[1]);
+        fila--;//a la inversa e cuando metimos el texto que le sumamos 1 para eliminar el 0
+        columna--;
+        //reservamos
+        try {
+            this.sesionActiva.crearReserva(fila, columna);
+            b[fila][columna].setBackground(Color.ORANGE);
+            JOptionPane.showMessageDialog(this, "Asiento reservado: "+e.getActionCommand());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
+        ;
+        
+        
     }
 }
