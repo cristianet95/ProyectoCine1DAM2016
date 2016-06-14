@@ -22,27 +22,22 @@ public class GestionFicheros {
     /*Carga la bd con peliculas y sesiones solo se debe si quieres cargar tu bd con algo para pruebas*/
     
     public void importarBDInicial(){
-        Sala sala1 = new Sala(1, 10, 10, true);
-        Sala sala2 = new Sala(2, 12, 12, false);
-        Sala sala3 = new Sala(3, 15, 15, false);
-        Sala sala4 = new Sala(4, 8, 10, true);
-        Sala sala5 = new Sala(5, 20, 20, true);
+        Sala sala1 = new Sala(1, 9, 9, true);
+        Sala sala2 = new Sala(2, 8, 8, false);
+        Sala sala3 = new Sala(3, 6, 6, false);
+        Sala sala4 = new Sala(4, 4, 4, true);
+        Sala sala5 = new Sala(5, 5, 7, true);
         Calendar fecha1=Calendar.getInstance();
         fecha1.set(2016, 7, 15, 0, 0, 0);
-        Sesion sesion1 = new Sesion("m", fecha1, 9);
-        sesion1.sala=sala1;
+        Sesion sesion1 = new Sesion("m", fecha1, 9, sala1);
         fecha1.set(2016, 7, 16, 0, 0, 0);        
-        Sesion sesion2 = new Sesion("t", fecha1, 5);
-        sesion2.sala=sala2;
+        Sesion sesion2 = new Sesion("t", fecha1, 5, sala2);
         fecha1.set(2016, 8, 1, 0, 0, 0);
-        Sesion sesion3 = new Sesion("n", fecha1, 4);
-        sesion3.sala=sala3;
+        Sesion sesion3 = new Sesion("n", fecha1, 4, sala3);
         fecha1.set(2016, 8, 8, 0, 0, 0);
-        Sesion sesion4 = new Sesion("m", fecha1, 9);
-        sesion4.sala=sala4;
+        Sesion sesion4 = new Sesion("m", fecha1, 9, sala4);
         fecha1.set(2016, 8, 17, 0, 0, 0);
-        Sesion sesion5 = new Sesion("n", fecha1, 8);
-        sesion5.sala=sala5;
+        Sesion sesion5 = new Sesion("n", fecha1, 8, sala5);
         
         Pelicula peli1 = new Pelicula("X-men apocalypse", "EEUU", 144, "Bryan Singer", "Jennifer Lawrence", "Magneto y Xavier se han separado 10 años después de Dias del futuro pasado y se reunirán para acabar con Apocalipsis", "Accion y superheroes", "B");
         peli1.anadirSesion(sesion1);

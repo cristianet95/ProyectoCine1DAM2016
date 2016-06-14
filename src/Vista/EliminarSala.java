@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.util.*;
+import javax.swing.JOptionPane;
+import modelo.*;
+
 /**
  *
  * @author USUARIO
@@ -16,6 +20,19 @@ public class EliminarSala extends javax.swing.JFrame {
      */
     public EliminarSala() {
         initComponents();
+        cargarComboSalas();
+    }
+    private void cargarComboSalas() {
+        this.comboSalas.removeAllItems();
+        ArrayList<Sala> salas = controlador.Cine.salas;
+        
+        if (salas == null) {
+            this.comboSalas.addItem("");
+        } else {
+            for (Sala s : salas ) {
+                this.comboSalas.addItem(s.getNumero());
+            }
+        }
     }
 
     /**
@@ -29,8 +46,8 @@ public class EliminarSala extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        eliminarNumeroSala = new javax.swing.JTextField();
         eliminarSala = new javax.swing.JButton();
+        comboSalas = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Eliminar Sala");
@@ -46,22 +63,23 @@ public class EliminarSala extends javax.swing.JFrame {
             }
         });
 
+        comboSalas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(eliminarSala)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(36, 36, 36)
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(eliminarNumeroSala, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(104, 104, 104))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,7 +90,7 @@ public class EliminarSala extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(eliminarNumeroSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboSalas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(eliminarSala)
                 .addGap(53, 53, 53))
@@ -82,7 +100,13 @@ public class EliminarSala extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eliminarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarSalaActionPerformed
-        // TODO add your handling code here:
+        Sala s = controlador.Cine.buscarSala(Integer.parseInt(this.comboSalas.getSelectedItem().toString()));
+        
+        if( s != null){
+            controlador.Cine.eliminarSala(s);
+            cargarComboSalas();
+            JOptionPane.showMessageDialog(this, "La sala se ha eliminado correctamente");
+        }
     }//GEN-LAST:event_eliminarSalaActionPerformed
 
     /**
@@ -122,7 +146,7 @@ public class EliminarSala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField eliminarNumeroSala;
+    private javax.swing.JComboBox comboSalas;
     private javax.swing.JButton eliminarSala;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

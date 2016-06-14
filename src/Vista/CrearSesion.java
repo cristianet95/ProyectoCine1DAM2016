@@ -185,8 +185,7 @@ public class CrearSesion extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "La sala no existe");
                 }else{
                     double precio = Double.parseDouble(campoPrecio.getText());
-                    sesion = new Sesion(nombre, fecha, precio);
-                    sesion.sala=sala1;
+                    sesion = new Sesion(nombre, fecha, precio,sala1);
                     pelicula.anadirSesion(sesion);//añadimos la sesion a la pelicula seleccinada
                     JOptionPane.showMessageDialog(this, "La sesion se ha añadido correctamente");
                 }

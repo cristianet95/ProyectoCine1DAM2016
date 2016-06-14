@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.util.*;
+import modelo.*;
+
 /**
  *
  * @author USUARIO
@@ -16,6 +19,26 @@ public class ModificarSala extends javax.swing.JFrame {
      */
     public ModificarSala() {
         initComponents();
+        cargarComboSalas();
+        cargarDatosSala();
+    }
+    private void cargarComboSalas() {
+        this.comboSalas.removeAllItems();
+        ArrayList<Sala> salas = controlador.Cine.salas;
+        
+        if (salas == null) {
+            this.comboSalas.addItem("");
+        } else {
+            for (Sala s : salas ) {
+                this.comboSalas.addItem(s.getNumero());
+            }
+        }
+    }
+    private void cargarDatosSala(){
+        Sala s = controlador.Cine.buscarSala(Integer.parseInt(this.comboSalas.getSelectedItem().toString()));
+        if(s != null ){
+            
+        }
     }
 
     /**
@@ -36,7 +59,7 @@ public class ModificarSala extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         modificar3D = new javax.swing.JCheckBox();
         modificarSala = new javax.swing.JButton();
-        modificarNumeroSala = new javax.swing.JComboBox();
+        comboSalas = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Modificar Sala");
@@ -62,7 +85,7 @@ public class ModificarSala extends javax.swing.JFrame {
         modificarSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         modificarSala.setText("Modificar");
 
-        modificarNumeroSala.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSalas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +110,7 @@ public class ModificarSala extends javax.swing.JFrame {
                                 .addComponent(modificarTamañoFila, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                                 .addComponent(modificarFilas, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(modificar3D)
-                            .addComponent(modificarNumeroSala, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(jLabel1)))
@@ -101,7 +124,7 @@ public class ModificarSala extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(modificarNumeroSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboSalas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -162,6 +185,7 @@ public class ModificarSala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox comboSalas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -169,7 +193,6 @@ public class ModificarSala extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JCheckBox modificar3D;
     private javax.swing.JTextField modificarFilas;
-    private javax.swing.JComboBox modificarNumeroSala;
     private javax.swing.JButton modificarSala;
     private javax.swing.JTextField modificarTamañoFila;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
+import modelo.Disponibilidad;
 import modelo.Pelicula;
 import modelo.Sesion;
 
@@ -17,30 +18,31 @@ import modelo.Sesion;
  *
  * @author USUARIO
  */
-public class CrearReserva extends javax.swing.JFrame implements ActionListener{
+public class CrearReserva extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form CrearReserva
      */
-    Pelicula pelicula=null;
+    Pelicula pelicula = null;
     JButton[][] b;
-    
+
     public CrearReserva() {
         initComponents();
-        
+
     }
-    
-    public void visualizar(Pelicula peli){
-        this.pelicula=peli;
+
+    public void visualizar(Pelicula peli) {
+        this.pelicula = peli;
         this.tituloPeli.setText(this.pelicula.getTitutlo());
         this.minutos.setText(Integer.toString(this.pelicula.getMinutos()));
         this.argumento.setText(this.pelicula.getArgumento());
         cargarComboSesiones();
-        
+
     }
-    private void cargarComboSesiones(){
+
+    private void cargarComboSesiones() {
         this.sesiones.removeAllItems();
-        
+
         if (this.pelicula.sesiones.size() == 0) {
             this.sesiones.addItem("");
         } else {
@@ -49,24 +51,31 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
             }
         }
     }
-    public void cargarAsientos(Sesion s){
-        int f=s.sala.getFilas();
-        int tf=s.sala.getTamFila();
+
+    public void cargarAsientos(Sesion s) {
+        int f = s.sala.getFilas();
+        int tf = s.sala.getTamFila();
         this.panelAsientos.removeAll();
-        this.panelAsientos.setLayout(new java.awt.GridLayout(f,tf));
-        this.b=new JButton[f][tf];
-        int cont=0;
+        this.panelAsientos.setLayout(new java.awt.GridLayout(f, tf));
+        this.b = new JButton[f][tf];
+        int cont = 0;
         for (int i = 0; i < this.b.length; i++) {
             for (int j = 0; j < this.b[i].length; j++) {
                 cont++;
-                b[i][j]= new JButton(""+cont);
+                b[i][j] = new JButton(i+ "-" + j);
+                if (s.asientos.get(cont).getDispo().equals(Disponibilidad.LIBRE)) 
+                    b[i][j].setBackground(Color.GREEN);
+                
+                else
+                    b[i][j].setBackground(Color.RED);
+                
                 b[i][j].addActionListener(this);
                 this.panelAsientos.add(b[i][j]);
+                
             }
         }
         this.panelAsientos.updateUI();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,39 +215,40 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void sesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionesActionPerformed
-        
+
     }//GEN-LAST:event_sesionesActionPerformed
 
     private void generarAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarAsientosActionPerformed
-        Sesion sesion=null;
-        if(this.sesiones.getSelectedIndex() != -1){
-            sesion=this.pelicula.buscarSesion(this.sesiones.getSelectedItem().toString());
-            if(sesion!=null)
+        Sesion sesion = null;
+        if (this.sesiones.getSelectedIndex() != -1) {
+            sesion = this.pelicula.buscarSesion(this.sesiones.getSelectedItem().toString());
+            if (sesion != null) {
                 cargarAsientos(sesion);
-            
+            }
+
         }
     }//GEN-LAST:event_generarAsientosActionPerformed
 
     private void botonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActionPerformed
-        int cont=0, fila, columna;
-        JButton jb=null;
-        String nombreSesion=this.sesiones.getSelectedItem().toString();
-        Sesion sesion=this.pelicula.buscarSesion(nombreSesion);
-        if(sesion!=null){
+        int cont = 0, fila, columna;
+        JButton jb = null;
+        String nombreSesion = this.sesiones.getSelectedItem().toString();
+        Sesion sesion = this.pelicula.buscarSesion(nombreSesion);
+        if (sesion != null) {
             for (int i = 0; i < this.b.length; i++) {
                 for (int j = 0; j < this.b[1].length; j++) {
-                    jb=(JButton)this.panelAsientos.getComponent(cont);
-                    if(jb.isSelected()){
+                    jb = (JButton) this.panelAsientos.getComponent(cont);
+                    if (jb.isSelected()) {
                         sesion.crearReserva(i, j);
                     }
                     cont++;
                 }
             }
-        }else
+        } else {
             JOptionPane.showMessageDialog(this, "No hay sesiones");
-            
-        
-        
+        }
+
+
     }//GEN-LAST:event_botonReservarActionPerformed
 
     /**
@@ -271,7 +281,7 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
             }
         });
     }

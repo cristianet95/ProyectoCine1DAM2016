@@ -23,13 +23,24 @@ public class Sesion {
     public Sesion(){
         this.fecha=Calendar.getInstance();
         this.asientos=new ArrayList();
+        
     }
 
-    public Sesion(String nombre, Calendar fecha, double precio) {
+    public Sesion(String nombre, Calendar fecha, double precio, Sala sala) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.precio = precio;
+        this.sala=sala;
         this.asientos = new ArrayList<>();
+        cargarAsientos();
+    }
+    
+    public void cargarAsientos(){
+        for (int i = 0; i < this.sala.getFilas(); i++) {
+            for (int j = 0; j < this.sala.getTamFila(); j++) {
+                this.asientos.add( new Asiento(i,j,Disponibilidad.LIBRE) );
+            }
+        }
     }
 
     @Override
