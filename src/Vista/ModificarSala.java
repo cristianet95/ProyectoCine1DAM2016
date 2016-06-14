@@ -6,6 +6,7 @@
 package Vista;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 import modelo.*;
 
 /**
@@ -36,8 +37,32 @@ public class ModificarSala extends javax.swing.JFrame {
     }
     private void cargarDatosSala(){
         Sala s = controlador.Cine.buscarSala(Integer.parseInt(this.comboSalas.getSelectedItem().toString()));
+        int filas=0, tamFilas=0,numero=0;
+        boolean es3D;
         if(s != null ){
-            
+            this.modificarFilas.setText(String.valueOf(s.getFilas()));
+            this.modificarTamañoFila.setText(String.valueOf(s.getTamFila()));
+            if(s.isSala3d())
+                this.modificar3D.setSelected(true);
+            else
+                this.modificar3D.setSelected(false);
+        }
+    }
+    private void modificarSala(){
+        Sala s = controlador.Cine.buscarSala(Integer.parseInt(this.comboSalas.getSelectedItem().toString()));
+        int filas=0, tamFilas=0,numero=0;
+        boolean es3D;
+        if(s != null ){
+            if(! this.modificarFilas.getText().equals(""))
+                filas=Integer.parseInt(this.modificarFilas.getText());
+            if(! this.modificarTamañoFila.getText().equals(""))
+                tamFilas=Integer.parseInt(this.modificarTamañoFila.getText());
+            if( this.modificar3D.isSelected() )
+                es3D=true;
+            else
+                es3D=false;
+            s.modificarSala(numero, filas, tamFilas, es3D);
+            JOptionPane.showMessageDialog(this, "Se ha modificado correctamente");
         }
     }
 
@@ -84,8 +109,18 @@ public class ModificarSala extends javax.swing.JFrame {
 
         modificarSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         modificarSala.setText("Modificar");
+        modificarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarSalaActionPerformed(evt);
+            }
+        });
 
         comboSalas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSalasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,6 +183,17 @@ public class ModificarSala extends javax.swing.JFrame {
     private void modificarTamañoFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarTamañoFilaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificarTamañoFilaActionPerformed
+
+    private void modificarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarSalaActionPerformed
+        modificarSala();
+        
+    }//GEN-LAST:event_modificarSalaActionPerformed
+
+    private void comboSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSalasActionPerformed
+        if(this.comboSalas.getSelectedIndex() != -1){
+             cargarDatosSala();
+        }
+    }//GEN-LAST:event_comboSalasActionPerformed
 
     /**
      * @param args the command line arguments

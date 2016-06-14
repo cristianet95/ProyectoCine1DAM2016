@@ -61,7 +61,7 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
         int cont = 0;
         for (int i = 0; i < this.b.length; i++) {
             for (int j = 0; j < this.b[i].length; j++) {
-                cont++;
+                
                 b[i][j] = new JButton(i+ "-" + j);
                 if (s.asientos.get(cont).getDispo().equals(Disponibilidad.LIBRE)) 
                     b[i][j].setBackground(Color.GREEN);
@@ -71,7 +71,7 @@ public class CrearReserva extends javax.swing.JFrame implements ActionListener {
                 
                 b[i][j].addActionListener(this);
                 this.panelAsientos.add(b[i][j]);
-                
+                cont++;
             }
         }
         this.panelAsientos.updateUI();

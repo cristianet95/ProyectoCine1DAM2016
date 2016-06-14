@@ -34,10 +34,10 @@ public class Sala {
         if (numero > 0) {
             this.numero = numero;
         }
-        if (filas > -1) {
+        if (filas > 0) {
             this.filas = filas;
         }
-        if (tamFila > -1) {
+        if (tamFila > 0) {
             this.tamFila = tamFila;
         }
         this.sala3d = sala3d;
