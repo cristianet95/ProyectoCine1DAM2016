@@ -6,7 +6,10 @@
 package Vista;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 import modelo.Pelicula;
+import modelo.Sala;
 import modelo.Sesion;
 
 /**
@@ -45,6 +48,51 @@ public class ModificarSesion extends javax.swing.JFrame {
             }
         }
     }
+    private void cargarDatosSesion(){
+        Pelicula p = controlador.Cine.buscarPeli(this.comboPeliculas.getSelectedItem().toString());
+        Sesion s = p.buscarSesion(this.nombreModificarSesion.getSelectedItem().toString());
+        if(s != null ){
+            this.modificarNombreSesion.setText(s.getNombre());
+            this.modificarDiayHora.setText(s.getFecha().get(Calendar.MONTH)+"-"+s.getFecha().get(Calendar.DATE)+"-"+s.getFecha().get(Calendar.YEAR));
+            this.modificarPrecio.setText(String.valueOf(s.getPrecio()));
+            this.modificarSala.setText(String.valueOf(s.sala.getNumero()));
+        }
+    }
+    private void modificarSesion(){
+        Pelicula p = controlador.Cine.buscarPeli(this.comboPeliculas.getSelectedItem().toString());
+        Sesion s = p.buscarSesion(this.nombreModificarSesion.getSelectedItem().toString());
+        Sala salaAux=null;
+        Calendar fechaAux=null;
+        if(s != null ){
+            
+            s.setNombre(this.modificarNombreSesion.getText().toString());
+            s.setPrecio(Double.parseDouble(this.modificarPrecio.getText().toString()));
+            salaAux=controlador.Cine.buscarSala(Integer.parseInt(this.modificarSala.getText().toString()));
+            if(salaAux!=null)
+                s.sala=salaAux;
+            fechaAux=validarFecha(this.modificarDiayHora.getText().toString());
+            if(fechaAux != null)
+                s.setFecha(fechaAux);
+            JOptionPane.showMessageDialog(this, "Se ha modificado correctamente");
+        }
+    }
+     public static Calendar validarFecha(String fecha){
+         String[] f=fecha.split("-");
+         Calendar fechaValidada=Calendar.getInstance();
+        int m,d,y;
+        if( f.length != 3 )
+            return null;
+        else{
+            m=Integer.parseInt(f[0]);
+            d=Integer.parseInt(f[1]);
+            y=Integer.parseInt(f[2]);
+            fechaValidada.set(y, m, d);
+            if(m<=12 && m>0 && d>0 && d<=31 && y>2015 && y<2060){
+                return fechaValidada;
+            }else
+                return null;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,10 +112,11 @@ public class ModificarSesion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         modificarPrecio = new javax.swing.JTextField();
         modificarSesion = new javax.swing.JButton();
-        comboPeliculas = new javax.swing.JComboBox<String>();
+        comboPeliculas = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         nombreModificarSesion = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Modificar Sesion");
@@ -76,7 +125,7 @@ public class ModificarSesion extends javax.swing.JFrame {
         jLabel2.setText("Nombre Sesion");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Dia y Hora");
+        jLabel3.setText("Fecha");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Sala");
@@ -92,7 +141,7 @@ public class ModificarSesion extends javax.swing.JFrame {
             }
         });
 
-        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPeliculas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPeliculasActionPerformed(evt);
@@ -111,6 +160,8 @@ public class ModificarSesion extends javax.swing.JFrame {
                 nombreModificarSesionActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("mm-dd-yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,9 +191,12 @@ public class ModificarSesion extends javax.swing.JFrame {
                                     .addGap(41, 41, 41)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(modificarNombreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(modificarSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                            .addComponent(modificarDiayHora, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(modificarSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                .addComponent(modificarDiayHora, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addGap(43, 43, 43)
+                                            .addComponent(jLabel8))
                                         .addComponent(modificarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(185, 185, 185)
@@ -161,7 +215,8 @@ public class ModificarSesion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(modificarDiayHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(modificarDiayHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -187,7 +242,8 @@ public class ModificarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarSesionActionPerformed
-       
+        modificarSesion();
+        cargarDatosSesion();
     }//GEN-LAST:event_modificarSesionActionPerformed
     
     private void comboPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPeliculasActionPerformed
@@ -196,7 +252,9 @@ public class ModificarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_comboPeliculasActionPerformed
 
     private void nombreModificarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreModificarSesionActionPerformed
-        // TODO add your handling code here:
+        if(this.nombreModificarSesion.getSelectedIndex() != -1){
+             cargarDatosSesion();
+        }
     }//GEN-LAST:event_nombreModificarSesionActionPerformed
 
     /**
@@ -243,6 +301,7 @@ public class ModificarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField modificarDiayHora;
     private javax.swing.JTextField modificarNombreSesion;
     private javax.swing.JTextField modificarPrecio;
