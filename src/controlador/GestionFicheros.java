@@ -71,6 +71,11 @@ public class GestionFicheros {
     //estos metodos importan y exportan a la BD cada vez que se requiera
     public void importarBD(){
         controlador.Cine.importarPeliculas();
+        for (Pelicula p : controlador.Cine.peliculas) {
+            for(Sesion s : p.sesiones){
+                s.cargarAsientos();
+            }
+        }
         controlador.Cine.importarSalas();
     }
     public void exportarBD(){
